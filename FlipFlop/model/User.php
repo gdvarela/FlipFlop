@@ -5,91 +5,194 @@ require_once(__DIR__."/../core/ValidationException.php");
 
 /**
  * Class User
- * 
  * Represents a User in the blog
- * 
- * @author lipido <lipido@gmail.com>
  */
 class User {
 
-  /**
-   * The user name of the user
-   * @var string
-   */
-  private $username;
 
-  /**
-   * The password of the user
-   * @var string
-   */
-  private $passwd;
-  
-  /**
-   * The constructor
-   * 
-   * @param string $username The name of the user
-   * @param string $passwd The password of the user
-   */
-  public function __construct($username=NULL, $passwd=NULL) {
-    $this->username = $username;
-    $this->passwd = $passwd;    
+  private $id;
+  private $login;
+  private $pass;
+  private $name;
+  private $lastname;
+  private $email;
+  private $phone;
+  private $DNI;
+
+    /**
+     * The constructor
+     * @param null $id
+     * @param null $login
+     * @param null $pass
+     * @param null $name
+     * @param null $lastname
+     * @param null $email
+     * @param null $phone
+     * @param null $DNI
+     * @internal param string $var The name of the var
+     */
+  public function __construct($id=NULL, $login=NULL, $pass=NULL, $name=NULL, $lastname=NULL, $email=NULL, $phone=NULL, $DNI=NULL) {
+    $this->id = $id;
+    $this->pass = $pass;
+    $this->login = $login;
+    $this->name = $name;
+    $this->lastname = $lastname;
+    $this->email = $email;
+    $this->phone = $phone;
+    $this->DNI = $DNI;
   }
 
-  /**
-   * Gets the username of this user
-   * 
-   * @return string The username of this user
-   */  
-  public function getUsername() {
-    return $this->username;
-  }
+    /**
+     * @return null
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-  /**
-   * Sets the username of this user
-   * 
-   * @param string $username The username of this user
-   * @return void
-   */  
-  public function setUsername($username) {
-    $this->username = $username;
-  }
-  
-  /**
-   * Gets the password of this user
-   * 
-   * @return string The password of this user
-   */  
-  public function getPasswd() {
-    return $this->passwd;
-  }  
-  /**
-   * Sets the password of this user
-   * 
-   * @param string $passwd The password of this user
-   * @return void
-   */    
-  public function setPassword($passwd) {
-    $this->passwd = $passwd;
-  }
-  
-  /**
-   * Checks if the current user instance is valid
-   * for being registered in the database
-   * 
-   * @throws ValidationException if the instance is
-   * not valid
-   * 
-   * @return void
-   */  
+    /**
+     * @param null $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return null
+     */
+    public function getLogin()
+    {
+        return $this->login;
+    }
+
+    /**
+     * @param null $login
+     */
+    public function setLogin($login)
+    {
+        $this->login = $login;
+    }
+
+    /**
+     * @return null
+     */
+    public function getPass()
+    {
+        return $this->pass;
+    }
+
+    /**
+     * @param null $pass
+     */
+    public function setPass($pass)
+    {
+        $this->pass = $pass;
+    }
+
+    /**
+     * @return null
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param null $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return null
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * @param null $lastname
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+    }
+
+    /**
+     * @return null
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param null $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return null
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param null $phone
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+    }
+
+    /**
+     * @return null
+     */
+    public function getDNI()
+    {
+        return $this->DNI;
+    }
+
+    /**
+     * @param null $DNI
+     */
+    public function setDNI($DNI)
+    {
+        $this->DNI = $DNI;
+    }
+
   public function checkIsValidForRegister() {
       $errors = array();
-      if (strlen($this->username) < 5) {
+      if (strlen($this->name) < 5) {
 	$errors["username"] = "Username must be at least 5 characters length";
-	
       }
-      if (strlen($this->passwd) < 5) {
-	$errors["passwd"] = "Password must be at least 5 characters length";	
+      if (strlen($this->pass) < 5) {
+	$errors["pass"] = "Password must be at least 5 characters length";
       }
+      if (strlen($this->name) < 3) {
+	$errors["name"] = "Your name must be at least 5 characters length";
+      }
+      if (strlen($this->lastname) < 10) {
+	$errors["lastname"] = "Lastname must be at least 5 characters length";
+      }
+      if (strlen($this->email) < 5 && (substr_count($this->email, "@") == 1) ) {
+	$errors["email"] = "Email must be at least 5 characters length";
+      }
+      if (strlen($this->phone) > 12 ) {
+	$errors["phone"] = "phone number must be 12 characters length";
+      }if (strlen($this->DNI) != 9 ) {
+	$errors["DNI"] = "DNI must be 9 characters length";
+      }
+
       if (sizeof($errors)>0){
 	throw new ValidationException($errors, "user is not valid");
       }

@@ -5,10 +5,7 @@ require_once(__DIR__."/../core/PDOConnection.php");
 
 /**
  * Class UserMapper
- *
  * Database interface for User entities
- * 
- * @author lipido <lipido@gmail.com>
  */
 class UserMapper {
 
@@ -30,35 +27,50 @@ class UserMapper {
    * @return void
    */      
   public function save($user) {
-    $stmt = $this->db->prepare("INSERT INTO users values (?,?)");
-    $stmt->execute(array($user->getUsername(), $user->getPasswd()));
+    $stmt = $this->db->prepare("INSERT INTO Users values (?,?,?,?,?,?,?,?)");
+    $stmt->execute(array($user->getId(), $user->getLogin(), $user->getPass(), $user->getName(), $user->getLastname(), $user->getEmail(), $user->getPhone(), $user->getDNI()));
   }
   
   /**
    * Checks if a given username is already in the database
    * 
-   * @param string $username the username to check
+   * @param string $login the username to check
    * @return boolean true if the username exists, false otherwise
    */
-  public function usernameExists($username) {
-    $stmt = $this->db->prepare("SELECT count(username) FROM users where username=?");
-    $stmt->execute(array($username));
-    
-    if ($stmt->fetchColumn() > 0) {   
+  public function loginExists($login) {
+    $stmt = $this->db->prepare("SELECT count(login) FROM users where login=?");
+    $stmt->execute(array($login));
+
+    if ($stmt->fetchColumn() > 0) {
       return true;
-    } 
+    }
+  }
+
+  /**
+   * Checks if a given dni is already in the database
+   *
+   * @param string $DNI the DNI to check
+   * @return boolean true if the DNI exists, false otherwise
+   */
+  public function dniExists($DNI) {
+    $stmt = $this->db->prepare("SELECT count(DNI) FROM users where DNI=?");
+    $stmt->execute(array($DNI));
+
+    if ($stmt->fetchColumn() > 0) {
+      return true;
+    }
   }
   
   /**
    * Checks if a given pair of username/password exists in the database
    * 
-   * @param string $username the username
-   * @param string $passwd the password
+   * @param string $login the username
+   * @param string $pass the password
    * @return boolean true the username/passwrod exists, false otherwise.
    */
-  public function isValidUser($username, $passwd) {
-    $stmt = $this->db->prepare("SELECT count(username) FROM users where username=? and passwd=?");
-    $stmt->execute(array($username, $passwd));
+  public function isValidUser($login, $pass) {
+    $stmt = $this->db->prepare("SELECT count(login) FROM users where login=? and pass=?");
+    $stmt->execute(array($login, $pass));
     
     if ($stmt->fetchColumn() > 0) {
       return true;        
