@@ -17,4 +17,10 @@ class ProductsController extends BaseController {
         $this->view->setLayout("welcome");
     }
 
+    public function last() {
+
+        $products = $this->productMapper->listLast();
+        $this->view->setVariable("products", $products);
+    }
+
 }
