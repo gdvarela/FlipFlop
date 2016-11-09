@@ -28,6 +28,7 @@ CREATE TABLE `Products` (
   `description` text COLLATE latin1_spanish_ci,
   `price` float DEFAULT NULL,
   `tags` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `add_date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -65,6 +66,7 @@ CREATE TABLE `Users` (
 --
 -- Dumping data for table `Users`
 --
+grant all privileges on FlipFlop.* to ffuser@localhost identified by "ffpass";
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
@@ -80,4 +82,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-07 20:11:18
+-- Dump completed on 2016-11-09 11:35:44
