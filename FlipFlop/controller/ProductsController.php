@@ -17,7 +17,7 @@ class ProductsController extends BaseController {
 
         $this->productMapper = new ProductMapper();
 
-        $this->view->setLayout("welcome");
+        $this->view->setLayout("header");
     }
 
     public function last() {
