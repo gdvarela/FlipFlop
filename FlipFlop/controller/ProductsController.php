@@ -27,5 +27,4 @@ class ProductsController extends BaseController {
 
         $this->view->render("products", "index");
     }
-
 }
