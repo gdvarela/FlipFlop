@@ -15,11 +15,11 @@ $products = $view->getVariable("products");
     <div class="list">
         <?php foreach($products as $product): ?>
             <div class="product">
-                <a href="?controller=products&action=view&id="<?= $product["id"] ?>> <img class="p-img light-border" src="img/chancleta2.jpg"> </a>
-                <div class="p-title text"><?= $product["product_name"] ?></div>
-                <div class="p-price text light-border"><?= $product["price"] ?>&euro;</div>
+                <a href="?controller=products&action=view&id="<?= $product->getId() ?>> <img class="p-img light-border" src="img/chancleta2.jpg"> </a>
+                <div class="p-title text"><?= $product->getProductName() ?></div>
+                <div class="p-price text light-border"><?= $product->getPrice() ?>&euro;</div>
                 <div class="p-text text">
-                    <span><?= $product["description"] ?></span>
+                    <span><?= $product->getDescription() ?></span>
                 </div>
             </div>
         <?php endforeach; ?>

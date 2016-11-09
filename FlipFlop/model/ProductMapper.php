@@ -20,7 +20,7 @@ class ProductMapper {
         $products = array();
 
         foreach ($last_products as $product) {
-            array_push($products, new Products($product["id"], $product["product_name"], $product["description"],
+            array_push($products, new Product($product["id"], $product["product_name"], $product["description"],
                 $product["price"], $product["tags"], $product["add_date"]));
         }
 

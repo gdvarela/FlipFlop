@@ -3,8 +3,7 @@
 
 require_once(__DIR__."/../core/ValidationException.php");
 
-class Product
-{
+class Product {
 
     private $id;
     private $product_name;
@@ -23,8 +22,7 @@ class Product
      * @param null $price
      * @param null $tags
      */
-    public function __construct($id = NULL, $product_name = NULL, $description = NULL, $price = NULL, $tags = NULL)
-    {
+    public function __construct($id = NULL, $product_name = NULL, $description = NULL, $price = NULL, $tags = NULL) {
         $this->id = $id;
         $this->product_name = $product_name;
         $this->description = $description;
@@ -35,8 +33,7 @@ class Product
     /**
      * @return mixed
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
