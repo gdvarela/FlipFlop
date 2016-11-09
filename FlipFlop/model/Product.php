@@ -25,11 +25,11 @@ class Product
      */
     public function __construct($id = NULL, $product_name = NULL, $description = NULL, $price = NULL, $tags = NULL)
     {
-        this->$id = $id;
-        this->$product_name = $product_name;
-        this->$description = $description;
-        this->$price = $price;
-        this->$tags = $tags;
+        $this->id = $id;
+        $this->product_name = $product_name;
+        $this->description = $description;
+        $this->price = $price;
+        $this->tags = $tags;
     }
 
     /**
