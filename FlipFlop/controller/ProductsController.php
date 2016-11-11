@@ -27,4 +27,49 @@ class ProductsController extends BaseController {
 
         $this->view->render("products", "index");
     }
+
+    public function create() {
+
+        $product = new Product();
+
+        if (isset($_POST["productname"])){
+
+            $product->setName($_POST["name"]);
+            $product->setDescription($_POST["description"]);
+            $product->setPrice($_POST["price"]);
+            $product->setTags($_POST["tags"]);
+            $product->setAddDate($_POST["date"]);
+            $product->setSeller($_POST["seller"]);
+
+
+            try{
+                $product->checkIsValidForRegister();
+
+                if (!$this->productMapper->exists($_POST["productname"])){
+
+                    $this->productMapper->save($product);
+                    $this->view->setFlash("Product ".$product->getUsername()." successfully added. ");
+                    //no se
+                    //$this->view->redirect("users", "login");
+                } else {
+                    $errors = array();
+                    $errors["product"] = "product already exists";
+                    $this->view->setVariable("errors", $errors);
+                }
+            }catch(ValidationException $ex) {
+                // Get the errors array inside the exepction...
+                $errors = $ex->getErrors();
+                // And put it to the view as "errors" variable
+                $this->view->setVariable("errors", $errors);
+            }
+        }
+
+        // Put the User object visible to the view
+        $this->view->setVariable("user", $product);
+
+        // render the view (/view/users/register.php)
+        $this->view->render("users", "register");
+    }
+
+
 }

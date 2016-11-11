@@ -12,6 +12,17 @@ class ProductMapper {
         $this->db = PDOConnection::getInstance();
     }
 
+
+    public function save($product){
+        $stmt = $this->db->prepare("INSERT INTO Products values (?,?,?,?,?,?)");
+        $stmt->execute(array($product->getProductName(), $product->getDescription(),
+            $product->getPrice(), $product->getTags(), $product->getAddDate(), $product->getSeller()));
+    }
+
+    public function view($product){
+        $stmt = $this->db->query("Select * from Products WHERE id = $product->getId() ");
+    }
+
     public function listLast() {
 
         $stmt = $this->db->query("Select * from Products order by add_date desc limit 4");

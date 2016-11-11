@@ -10,6 +10,8 @@ class Product {
     private $description;
     private $price;
     private $tags;
+    private $seller;
+    private $add_date;
 
 
     //constructor
@@ -21,13 +23,18 @@ class Product {
      * @param null $description
      * @param null $price
      * @param null $tags
+     * @param null $add_date
+     * @param null $seller
      */
-    public function __construct($id = NULL, $product_name = NULL, $description = NULL, $price = NULL, $tags = NULL) {
+    public function __construct($id = NULL, $product_name = NULL, $description = NULL, $price = NULL, $tags = NULL,
+                                $add_date = NULL, $seller = NULL) {
         $this->id = $id;
         $this->product_name = $product_name;
         $this->description = $description;
         $this->price = $price;
         $this->tags = $tags;
+        $this->seller = $seller;
+        $this->add_date = $add_date;
     }
 
     /**
@@ -109,6 +116,39 @@ class Product {
         $this->tags = $tags;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getSeller()
+    {
+        return $this->seller;
+    }
+
+    /**
+     * @param mixed $seller
+     */
+    public function setSeller($seller)
+    {
+        $this->seller = $seller;
+    }
+
+    /**
+     * @return null
+     */
+    public function getAddDate()
+    {
+        return $this->add_date;
+    }
+
+    /**
+     * @param null $add_date
+     */
+    public function setAddDate($add_date)
+    {
+        $this->add_date = $add_date;
+    }
+
+
     public function checkIsValidForRegister()
     {
         $errors = array();
@@ -128,5 +168,6 @@ class Product {
             throw new ValidationException($errors, "product is not valid");
         }
     }
+
 
 }

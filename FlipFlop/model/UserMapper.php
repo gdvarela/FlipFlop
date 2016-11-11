@@ -19,24 +19,25 @@ class UserMapper {
     $this->db = PDOConnection::getInstance();
   }
 
-  /**
-   * Saves a User into the database
-   * 
-   * @param User $user The user to be saved
-   * @throws PDOException if a database error occurs
-   * @return void
-   */      
   public function save($user) {
     $stmt = $this->db->prepare("INSERT INTO Users values (?,?,?,?,?,?,?,?)");
-    $stmt->execute(array($user->getId(), $user->getLogin(), $user->getPass(), $user->getName(), $user->getLastname(), $user->getEmail(), $user->getPhone(), $user->getDNI()));
+    $stmt->execute(array($user->getId(), $user->getLogin(), $user->getPass(), $user->getName(), $user->getLastname(),
+        $user->getEmail(), $user->getPhone(), $user->getDNI()));
   }
-  
-  /**
-   * Checks if a given username is already in the database
-   * 
-   * @param string $login the username to check
-   * @return boolean true if the username exists, false otherwise
-   */
+
+    public function modify($user) {
+        $stmt = $this->db->prepare("INSERT INTO Users WHERE login= $user->getLogin() values (?,?,?,?,?,?)");
+        $stmt->execute(array($user->getPass(), $user->getName(), $user->getLastname(), $user->getEmail(), $user->getPhone(), $user->getDNI()));
+    }
+
+    public function view($user){
+        $stmt = $this->db->query("SELECT * FROM Users WHERE login= $user->getLogin()");
+    }
+
+    public function delete($user){
+        $stmt = $this->db->query("DELETE * FROM Users WHERE login= $user->getLogin()");
+    }
+
   public function loginExists($login) {
     $stmt = $this->db->prepare("SELECT count(login) FROM users where login=?");
     $stmt->execute(array($login));
@@ -76,4 +77,5 @@ class UserMapper {
       return true;        
     }
   }
+
 }

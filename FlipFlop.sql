@@ -66,6 +66,7 @@ CREATE TABLE `Users` (
   `DNI` varchar(9) COLLATE latin1_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `login_UNIQUE` (`login`)
+  UNIQUE KEY `dni_UNIQUE` (`dni`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
