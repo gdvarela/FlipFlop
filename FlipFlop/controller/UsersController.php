@@ -21,26 +21,25 @@ class UsersController extends BaseController {
 
     public function __construct() {
         parent::__construct();
-        $this->view->setLayout("welcome");
+        $this->userMapper = new UserMapper();
+        $this->view->setLayout("header");
     }
 
     public function login() {
-        if (isset($_POST["username"])){
-            //process login form
-            if ($this->userMapper->isValidUser($_POST["username"], $_POST["passwd"])) {
 
-                $_SESSION["currentuser"]=$_POST["username"];
-                $this->view->redirect("products", "index");
 
+        if (isset($_POST["login"])){
+
+            if ($this->userMapper->isValidUser($_POST["login"], $_POST["pass"])) {
+
+                $_SESSION["currentuser"]=$_POST["login"];
             }else{
                 $errors = array();
                 $errors["general"] = "User is not valid";
                 $this->view->setVariable("errors", $errors);
             }
+            $this->view->redirect("products", "last");
         }
-
-        // render the view (/view/users/login.php)
-        $this->view->render("users", "login");
     }
 
     public function register() {

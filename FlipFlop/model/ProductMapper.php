@@ -25,7 +25,7 @@ class ProductMapper {
 
     public function listLast() {
 
-        $stmt = $this->db->query("Select * from Products order by add_date desc limit 4");
+        $stmt = $this->db->query("Select * from Products order by add_date desc limit 8");
         $last_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $products = array();
