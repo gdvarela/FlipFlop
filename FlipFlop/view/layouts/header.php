@@ -20,16 +20,18 @@ $view = ViewManager::getInstance();
     </div>
     <div class="login">
         <!--<div class="l_title"> Login</div>-->
-        <div class="login-input">
-            <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
-            <input class="input" type="text" placeholder="Email address">
-        </div>
-        <div class="login-input">
-            <span class="input-group-addon"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
-            <input class="input" type="password" placeholder="Password">
-        </div>
-        <button class="l_button" type="button">Registrarse</button>
-        <button class="l_button" type="button">Entrar</button>
+        <form action="?controller=users&action=login" method="POST">
+            <div class="login-input">
+                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
+                <input class="input" type="text" name="login" placeholder="Nick">
+            </div>
+            <div class="login-input">
+                <span class="input-group-addon"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
+                <input class="input" type="password" name="pass" placeholder="Password">
+            </div>
+            <button class="l_button" type="submit">Entrar</button>
+            <a href="?controller=users&action=register"><button class="l_button" type="button">Registrarse</button></a>
+        </form>
     </div>
     <?= $view->getFragment(ViewManager::DEFAULT_FRAGMENT) ?>
     <div class="footer">
