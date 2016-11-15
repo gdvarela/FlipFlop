@@ -71,5 +71,12 @@ class ProductsController extends BaseController {
         $this->view->render("users", "register");
     }
 
+    public function view() {
+
+        $id = isset($_POST["id"]);
+        $product = $this->productMapper->view($id);
+        $this->view->setVariable("products", $product);
+    }
+
 
 }

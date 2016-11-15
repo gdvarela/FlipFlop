@@ -19,8 +19,8 @@ class ProductMapper {
             $product->getPrice(), $product->getTags(), $product->getAddDate(), $product->getSeller()));
     }
 
-    public function view($product){
-        $stmt = $this->db->query("Select * from Products WHERE id = $product->getId() ");
+    public function view($id){
+        $stmt = $this->db->query("Select * from Products WHERE id = $id ");
     }
 
     public function listLast() {
