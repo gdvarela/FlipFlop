@@ -3,6 +3,13 @@
   $i18n_messages = 
   array(
     "Post" => "Artículo",
+    "Back" => "Atrás",
+    "Tags" => "Etiquetas",
+    "Added" => "Añadido",
+    "Seller" => "Vendedor",
+    "Product" => "Producto",
+    "Price" => "Precio",
+    "Description" => "Descripción",
     "by %s" => "por %s",
     "Posts" => "Artículos",
     "Title" => "Título",    

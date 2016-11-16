@@ -11,9 +11,44 @@ $view->setVariable("title", "View Product");
 
 ?>
 
-<a href="html/description.html"> <img class="p-img light-border" src="img/chancleta2.jpg"> </a>
-<div class="p-title text"><?= sprintf(i18n("by %s"),$post->getAuthor()->getUsername()) ?></div>
-<div class="p-price text light-border">4,99 €</div>
-<div class="p-text text">
-    <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="stylesheet" href="../css/font-awesome.min.css">
+        <title>Title</title>
+    </head>
+
+    <body>
+        <div class="content">
+            <a class="button light-border" href="../FlipFlop/index.php">
+                <i class="fa fa-list fa-fw fa-3x" aria-hidden="true"></i>
+                <span class="text button-text2"><?= i18n("Back") ?></span>
+            </a>
+            <div class="img-list">
+                <div>
+                    <img class="d-img light-border" src="../img/chancleta2.jpg">
+                </div>
+                <div class="sub-img-box">
+                    <img class="sub-img light-border" src="../img/chancleta2.jpg">
+                    <img class="sub-img light-border" src="../img/chancleta2.jpg">
+                </div>
+            </div>
+            <div class="des-head light-border">
+                <div class="p-row rowtext">
+                    <div class="p-title text"><?= i18n("Product").": ".htmlentities( $product->getProductName() ) ?></div>
+                    <div class="p-price text"><?= i18n("Price").": ".htmlentities( $product->getPrice() ) ?></div>
+                </div>
+                <div>
+                    <div class="p-row rowtext"><?= i18n("Description").": ".htmlentities( $product->getDescription() ) ?></div>
+                    <div class="p-row rowtext"><?= i18n("Tags").": ".htmlentities( $product->getTags() ) ?></div>
+                        <div>
+                            <div class="p-row2 rowtext"><?= i18n("Seller").": ".htmlentities( $product->getSeller() ) ?></div>
+                            <div class="p-row2 rowtext"><?= i18n("Added").": ".htmlentities( $product->getAddDate() ) ?></div>
+                        </div>
+                </div>
+        </div>
+    </body>
+
+</html>

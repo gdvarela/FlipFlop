@@ -52,6 +52,14 @@ footer {
     overflow-y: hidden;
 }
 
+.rowtext {
+    font-family: comic-sans;
+    text-align: left;
+    color: black;
+    word-wrap: break-word;
+    overflow-y: hidden;
+}
+
 .light-border {
     border: 1px solid black;
     border-radius: 15px;
@@ -66,6 +74,12 @@ footer {
 
 .button-text {
     font-size: 26px;
+}
+
+.button-text2 {
+    font-size: 26px;
+    position: absolute;
+    margin: 1% 0% 0% 10%;
 }
 
 .chat-tab {
@@ -210,7 +224,7 @@ body{
 }
 
 .p-title {
-    width: 71%;
+    width: 70%;
     padding: 1%;
     margin: 1%;
     height: 11%;
@@ -232,6 +246,24 @@ body{
     padding: 1%;
     font-size: 12px;
     width: 96%;
+    margin: 1%;
+    height: 13%;
+}
+
+.p-row {
+    float: left;
+    padding: 1%;
+    font-size: 12px;
+    width: 100%;
+    margin: 1%;
+    height: 13%;
+}
+
+.p-row2 {
+    float: left;
+    padding: 1%;
+    font-size: 12px;
+    width: 40%;
     margin: 1%;
     height: 13%;
 }

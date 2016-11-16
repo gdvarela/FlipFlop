@@ -82,9 +82,9 @@ class ProductsController extends BaseController {
         }
 
         $id = $_GET["id"];
-        $product = $this->productMapper->view($id);
-        $this->view->setVariable("product", $product);
-        $this->view->render("product", "view");
+        $products = $this->productMapper->view($id);
+        $this->view->setVariable("product", $products);
+        $this->view->render("products", "view");
     }
 
 }
