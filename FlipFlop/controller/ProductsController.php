@@ -77,10 +77,14 @@ class ProductsController extends BaseController {
 
     public function view() {
 
-        $id = isset($_POST["id"]);
-        $product = $this->productMapper->view($id);
-        $this->view->setVariable("products", $product);
-    }
+        if (!isset($_GET["id"])) {
+            throw new Exception("id is mandatory");
+        }
 
+        $id = $_GET["id"];
+        $product = $this->productMapper->view($id);
+        $this->view->setVariable("product", $product);
+        $this->view->render("product", "view");
+    }
 
 }

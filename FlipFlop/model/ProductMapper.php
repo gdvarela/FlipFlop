@@ -20,12 +20,17 @@ class ProductMapper {
     }
 
     public function view($id){
-        $stmt = $this->db->query("Select * from Products WHERE id = $id ");
+        $stmt = $this->db->prepare("SELECT * FROM products WHERE id = ? ");
+        $stmt->execute(array($id));
+        $product = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return new Product($product["id"], $product["product_name"], $product["description"],
+            $product["price"], $product["tags"], $product["add_date"]);
     }
 
     public function listLast() {
 
-        $stmt = $this->db->query("Select * from Products order by add_date desc limit 8");
+        $stmt = $this->db->query("Select * from products order by add_date desc limit 8");
         $last_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $products = array();
