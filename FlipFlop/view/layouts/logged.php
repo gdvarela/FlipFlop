@@ -14,6 +14,11 @@ $view = ViewManager::getInstance();
 </head>
 <body>
 <script src="js/jquery-3.1.1.min.js"></script>
+<?php
+if($view->hasFlash()) {
+    echo "<div class=\"pops\"><span class=\"pop-text\">".$view->popFlash()."</span></div>";
+}
+?>
 <div class="logo"></div>
 <div class="title text"> Flip - Flip</div>
 <div class="login">

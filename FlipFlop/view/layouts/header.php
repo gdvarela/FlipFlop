@@ -9,17 +9,23 @@ $view = ViewManager::getInstance();
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/modal.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <title>Title</title>
 </head>
 <body>
-    <script src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <?php
+    if($view->hasFlash()) {
+        echo "<div class=\"pops\"><span class=\"pop-text\">".$view->popFlash()."</span></div>";
+    }
+    ?>
     <div class="logo">
     </div>
     <div class="title text"> Flip - Flip
     </div>
     <div class="login">
-        <!--<div class="l_title"> Login</div>-->
         <form action="?controller=users&action=login" method="POST">
             <div class="login-input">
                 <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
@@ -34,7 +40,6 @@ $view = ViewManager::getInstance();
             <a href="?controller=users&action=register"><button class="l_button" type="button">Registrarse</button></a>
         </form>
     </div>
-    <?= $view->popFlash() ?>
     <?= $view->getFragment(ViewManager::DEFAULT_FRAGMENT) ?>
     <div class="footer">
         <div class="foot">

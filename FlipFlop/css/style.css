@@ -273,6 +273,27 @@ body{
     display: none;
 }
 
+.pops {
+    width: 33%;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    color: black;
+    background-color: red;
+    font-size: 30px;
+    z-index: 100;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 12px;
+}
+
+.pop-text {
+    line-height: 80px;
+    display: inline-block;
+    vertical-align: middle
+}
+
 .foot {
     height: 30px;
     background-color: #ff533d;
