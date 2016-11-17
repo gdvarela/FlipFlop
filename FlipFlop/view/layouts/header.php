@@ -23,7 +23,7 @@ $view = ViewManager::getInstance();
     ?>
     <div class="logo">
     </div>
-    <div class="title text"> Flip - Flip
+    <div class="title text"> Flip - Flop
     </div>
     <div class="login">
         <form action="?controller=users&action=login" method="POST">
@@ -37,8 +37,64 @@ $view = ViewManager::getInstance();
                 <input class="input" type="password" name="pass" placeholder="Password">
             </div>
             <button class="l_button" type="submit">Entrar</button>
-            <a href="?controller=users&action=register"><button class="l_button" type="button">Registrarse</button></a>
+            <button id="register-button" class="l_button" type="button">Registrarse</button>
         </form>
+    </div>
+    <div id="register-modal" class="register-modal">
+        <div class="register-content">
+            <form action="?controller=users&action=register" method="POST">
+                <div class="register">
+                    <span class="text">Nickname: </span>
+                    <div class="register-input">
+                        <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
+                        <input class="input" type="text" name="login" placeholder="Nick" autofocus>
+                    </div>
+                </div>
+                <div class="register">
+                    <span class="text">Password: </span>
+                    <div class="register-input">
+                        <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
+                        <input class="input" type="password" name="pass" placeholder="Password" autofocus>
+                    </div>
+                </div>
+                <div class="register">
+                    <span class="text">Repeat Password: </span>
+                    <div class="register-input">
+                        <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
+                        <input class="input" type="password" name="pass2" placeholder="Password" autofocus>
+                    </div>
+                </div>
+                <div class="register">
+                    <span class="text">Name: </span>
+                    <div class="register-input">
+                        <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
+                        <input class="input" type="text" name="name" placeholder="Name" autofocus>
+                    </div>
+                </div>
+                <div class="register">
+                    <span class="text">Last name: </span>
+                    <div class="register-input">
+                        <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
+                        <input class="input" type="text" name="lastname" placeholder="Last name" autofocus>
+                    </div>
+                </div>
+                <div class="register">
+                    <span class="text">Email: </span>
+                    <div class="register-input">
+                        <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
+                        <input class="input" type="email" name="email" placeholder="Email" autofocus>
+                    </div>
+                </div>
+                <div class="register">
+                    <span class="text">Phone: </span>
+                    <div class="register-input">
+                        <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
+                        <input class="input" type="number" name="phone" placeholder="Phone" autofocus>
+                    </div>
+                </div>
+                <button class="l_button" type="submit">Register</button>
+            </form>
+        </div>
     </div>
     <?= $view->getFragment(ViewManager::DEFAULT_FRAGMENT) ?>
     <div class="footer">

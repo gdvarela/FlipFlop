@@ -23,8 +23,10 @@ if($view->hasFlash()) {
 <div class="title text"> Flip - Flip</div>
 <div class="login">
     <div class="logged text">
-        <i class="fa fa-user" aria-hidden="true"></i>
-        <span class="profile-name"><?= $_SESSION["currentuserName"] ?></span>
+        <div class="profile">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <span class="profile-name"><?= $_SESSION["currentuserName"] ?></span>
+        </div>
         <form class="profile-form" action="?controller=users&action=logout" method="POST">
             <button class="l_button" type="submit">Logout</button>
         </form>

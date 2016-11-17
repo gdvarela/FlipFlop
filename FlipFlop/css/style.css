@@ -109,6 +109,23 @@ body{
     float: left;
 }
 
+.register {
+    margin: 2%;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.register-input {
+    display: inline-block;
+    background-color: white;
+    border: 2px solid white;
+    box-shadow: 1px;
+    border-radius: 5px;
+    max-width: 350px;
+    width: 75%;
+    float: right;
+}
+
 .login {
     position: relative;
     height: 100px;
@@ -118,16 +135,22 @@ body{
 }
 
 .login-input {
+    display: inline-block;
     background-color: white;
     margin: 2%;
     border: 2px solid white;
     box-shadow: 1px;
     border-radius: 5px;
+    max-width: 200px;
 }
 
 .logged {
     padding: 20px;
     font-size: 20px;
+}
+
+.profile {
+    margin: 8px;
 }
 
 .profile-name {
@@ -140,6 +163,8 @@ body{
 }
 
 .input {
+    width: 90%;
+    float: right;
     text-align: center;
     border: medium none transparent;
     background-color: white;
@@ -260,7 +285,7 @@ body{
 
 .l_button {
     position: relative;
-    margin: 1% 0% 0% 7%;
+    margin: 1% 0% 0% 0%;
     color: black;
     border: 2px solid white;
     background-color: #ff533d;

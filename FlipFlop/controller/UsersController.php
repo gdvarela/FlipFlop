@@ -83,11 +83,8 @@ class UsersController extends BaseController {
                 $this->view->setVariable("errors", $errors);
             }
         }
-
-        // Put the User object visible to the view
         $this->view->setVariable("user", $user);
 
-        // render the view (/view/users/register.php)
         $this->view->render("users", "register");
 
     }
