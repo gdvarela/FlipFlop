@@ -30,9 +30,11 @@ class UsersController extends BaseController {
 
         if (isset($_POST["login"])){
 
-            if ($this->userMapper->isValidUser($_POST["login"], $_POST["pass"])) {
+            $user = $this->userMapper->isValidUser($_POST["login"], $_POST["pass"]);
 
-                $_SESSION["currentuser"]=$_POST["login"];
+            if (isset($user[0]["id"])) {
+                $_SESSION["currentuser"]=$user[0]["id"];
+                $_SESSION["currentuserName"] = $user[0]["name"];
             }else{
                 $errors = array();
                 $errors["general"] = "User is not valid";
@@ -146,11 +148,7 @@ class UsersController extends BaseController {
     public function logout() {
         session_destroy();
 
-        // perform a redirection. More or less:
-        // header("Location: index.php?controller=users&action=login")
-        // die();
-        $this->view->redirect("users", "login");
-
+        $this->view->redirect("products", "last");
     }
 
 }

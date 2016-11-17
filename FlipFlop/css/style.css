@@ -125,6 +125,20 @@ body{
     border-radius: 5px;
 }
 
+.logged {
+    padding: 20px;
+    font-size: 20px;
+}
+
+.profile-name {
+    padding: 10px;
+    font-size: 25px;
+}
+
+.profile-form {
+    display: inline;
+}
+
 .input {
     text-align: center;
     border: medium none transparent;
