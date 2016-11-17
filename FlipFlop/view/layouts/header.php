@@ -2,8 +2,8 @@
 
 require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +23,8 @@ $view = ViewManager::getInstance();
         <form action="?controller=users&action=login" method="POST">
             <div class="login-input">
                 <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
-                <input class="input" type="text" name="login" placeholder="Nick">
+                <input class="input" type="text" name="login" <?php if(isset($_SESSION["ERRORS"]["login"]))
+                        { echo "value=".$_SESSION["ERRORS"]["login"]."";} ?> placeholder="Nick">
             </div>
             <div class="login-input">
                 <span class="input-group-addon"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
@@ -33,6 +34,7 @@ $view = ViewManager::getInstance();
             <a href="?controller=users&action=register"><button class="l_button" type="button">Registrarse</button></a>
         </form>
     </div>
+    <?= $view->popFlash() ?>
     <?= $view->getFragment(ViewManager::DEFAULT_FRAGMENT) ?>
     <div class="footer">
         <div class="foot">

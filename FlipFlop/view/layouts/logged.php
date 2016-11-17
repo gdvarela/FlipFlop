@@ -28,6 +28,7 @@ $view = ViewManager::getInstance();
         </form>
     </div>
 </div>
+<?= $view->popFlash() ?>
 <?= $view->getFragment(ViewManager::DEFAULT_FRAGMENT) ?>
 <div class="footer">
     <div class="foot">

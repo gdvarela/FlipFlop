@@ -77,13 +77,24 @@ class UserMapper
      * @param string $pass the password
      * @return boolean true the username/passwrod exists, false otherwise.
      */
-    public function isValidUser($login, $pass)
-    {
+    public function isValidPass ($login, $pass) {
         $stmt = $this->db->prepare("SELECT * FROM Users where login=? and pass=?");
         $stmt->execute(array($login, $pass));
         $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return $user;
+    }
+
+    public function isValidUser($login)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM Users where login=?");
+        $stmt->execute(array($login));
+
+        if ($stmt->fetchColumn() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
