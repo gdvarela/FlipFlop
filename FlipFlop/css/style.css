@@ -126,6 +126,14 @@ body{
     float: right;
 }
 
+.register-error {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: normal;
+    margin: 3px;
+    color: #a0000a;
+}
+
 .login {
     position: relative;
     height: 100px;

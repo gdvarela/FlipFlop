@@ -20,18 +20,6 @@ class ProductsController extends BaseController {
         $this->view->setLayout("header");
     }
 
-    public function last() {
-
-        if(isset($_SESSION["currentuser"])) {
-            $this->view->setLayout("logged");
-        }
-
-        $products = $this->productMapper->listLast();
-        $this->view->setVariable("products", $products);
-
-        $this->view->render("products", "index");
-    }
-
     public function create() {
 
         $product = new Product();
