@@ -4,12 +4,12 @@
 /**
  * Default controller if any controller is passed in the URL
  */
-define("DEFAULT_CONTROLLER", "products");
+define("DEFAULT_CONTROLLER", "index");
 
 /**
  * Default action if any action is passed in the URL
  */
-define("DEFAULT_ACTION", "last");
+define("DEFAULT_ACTION", "welcome");
 
 /**
  * Main router (single entry-point for all requests)

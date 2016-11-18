@@ -1,23 +1,24 @@
 <?php
 // file: model/User.php
 
-require_once(__DIR__."/../core/ValidationException.php");
+require_once(__DIR__ . "/../core/ValidationException.php");
 
 /**
  * Class User
  * Represents a User in the blog
  */
-class User {
+class User
+{
 
 
-  private $id;
-  private $login;
-  private $pass;
-  private $name;
-  private $lastname;
-  private $email;
-  private $phone;
-  private $DNI;
+    private $id;
+    private $login;
+    private $pass;
+    private $name;
+    private $lastname;
+    private $email;
+    private $phone;
+    private $DNI;
 
     /**
      * The constructor
@@ -31,16 +32,17 @@ class User {
      * @param null $DNI
      * @internal param string $var The name of the var
      */
-  public function __construct($id=NULL, $login=NULL, $pass=NULL, $name=NULL, $lastname=NULL, $email=NULL, $phone=NULL, $DNI=NULL) {
-    $this->id = $id;
-    $this->pass = $pass;
-    $this->login = $login;
-    $this->name = $name;
-    $this->lastname = $lastname;
-    $this->email = $email;
-    $this->phone = $phone;
-    $this->DNI = $DNI;
-  }
+    public function __construct($id = NULL, $login = NULL, $pass = NULL, $name = NULL, $lastname = NULL, $email = NULL, $phone = NULL, $DNI = NULL)
+    {
+        $this->id = $id;
+        $this->pass = $pass;
+        $this->login = $login;
+        $this->name = $name;
+        $this->lastname = $lastname;
+        $this->email = $email;
+        $this->phone = $phone;
+        $this->DNI = $DNI;
+    }
 
     /**
      * @return null
@@ -170,31 +172,38 @@ class User {
         $this->DNI = $DNI;
     }
 
-  public function checkIsValidForRegister() {
-      $errors = array();
-      if (strlen($this->name) < 5) {
-	$errors["username"] = "Username must be at least 5 characters length";
-      }
-      if (strlen($this->pass) < 5) {
-	$errors["pass"] = "Password must be at least 5 characters length";
-      }
-      if (strlen($this->name) < 3) {
-	$errors["name"] = "Your name must be at least 5 characters length";
-      }
-      if (strlen($this->lastname) < 10) {
-	$errors["lastname"] = "Lastname must be at least 5 characters length";
-      }
-      if (strlen($this->email) < 5 && (substr_count($this->email, "@") == 1) ) {
-	$errors["email"] = "Email must be at least 5 characters length";
-      }
-      if (strlen($this->phone) > 12 ) {
-	$errors["phone"] = "phone number must be 12 characters length";
-      }if (strlen($this->DNI) != 9 ) {
-	$errors["DNI"] = "DNI must be 9 characters length";
-      }
+    public function checkIsValidForRegister($pass2)
+    {
 
-      if (sizeof($errors)>0){
-	throw new ValidationException($errors, "user is not valid");
-      }
-  } 
+        $errors = array();
+        if (strlen($this->login) < 5) {
+            $errors["username"] = "Username must be at least 5 characters length";
+        }
+        if (strlen($this->pass) < 5) {
+            $errors["password"] = "Password must be at least 5 characters length";
+        }
+        if (strlen($this->name) < 3) {
+            $errors["name"] = "Your name must be at least 5 characters length";
+        }
+        if (strlen($this->lastname) < 10) {
+            $errors["lastname"] = "Lastname must be at least 5 characters length";
+        }
+        if (strlen($this->email) < 5 && (substr_count($this->email, "@") == 1)) {
+            $errors["email"] = "Email must be at least 5 characters length";
+        }
+        if (strlen($this->phone) > 12) {
+            $errors["phone"] = "phone number must be 12 characters length";
+        }
+        if (strlen($this->DNI) != 9) {
+            $errors["DNI"] = "DNI must be 9 characters length";
+        }
+        if ($this->pass != $pass2) {
+            $errors["password2"] = "Passwords must be identical";
+        }
+
+
+        if (sizeof($errors) > 0) {
+            throw new ValidationException($errors, "user is not valid");
+        }
+    }
 }

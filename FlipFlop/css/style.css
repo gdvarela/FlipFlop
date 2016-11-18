@@ -123,6 +123,31 @@ body{
     float: left;
 }
 
+.register {
+    margin: 2%;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.register-input {
+    display: inline-block;
+    background-color: white;
+    border: 2px solid white;
+    box-shadow: 1px;
+    border-radius: 5px;
+    max-width: 350px;
+    width: 75%;
+    float: right;
+}
+
+.register-error {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: normal;
+    margin: 3px;
+    color: #a0000a;
+}
+
 .login {
     position: relative;
     height: 100px;
@@ -132,14 +157,36 @@ body{
 }
 
 .login-input {
+    display: inline-block;
     background-color: white;
     margin: 2%;
     border: 2px solid white;
     box-shadow: 1px;
     border-radius: 5px;
+    max-width: 200px;
+}
+
+.logged {
+    padding: 20px;
+    font-size: 20px;
+}
+
+.profile {
+    margin: 8px;
+}
+
+.profile-name {
+    padding: 10px;
+    font-size: 25px;
+}
+
+.profile-form {
+    display: inline;
 }
 
 .input {
+    width: 90%;
+    float: right;
     text-align: center;
     border: medium none transparent;
     background-color: white;
@@ -278,7 +325,7 @@ body{
 
 .l_button {
     position: relative;
-    margin: 1% 0% 0% 7%;
+    margin: 1% 0% 0% 0%;
     color: black;
     border: 2px solid white;
     background-color: #ff533d;
@@ -289,6 +336,27 @@ body{
 .footer {
     position: absolute;
     display: none;
+}
+
+.pops {
+    width: 33%;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    color: black;
+    background-color: red;
+    font-size: 30px;
+    z-index: 100;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 12px;
+}
+
+.pop-text {
+    line-height: 80px;
+    display: inline-block;
+    vertical-align: middle
 }
 
 .foot {
