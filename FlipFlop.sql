@@ -33,7 +33,7 @@ CREATE TABLE `Chats` (
   KEY `idInterested_idx` (`idInterested`),
   CONSTRAINT `idInterested` FOREIGN KEY (`idInterested`) REFERENCES `Users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `idProducto_chats` FOREIGN KEY (`idProduct`) REFERENCES `Products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,7 +152,7 @@ CREATE TABLE `Users` (
   `DNI` varchar(9) COLLATE latin1_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `login_UNIQUE` (`login`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -161,7 +161,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (1,'David','admin','David','Ansia','david@gmail.com','654987322','65498721E'),(2,'Guille','admin','Guillermo','Davila','guillermo@gmail.com','654987313','65498754T'),(3,'Jaime','user','Jaime','Perez','jaime@gmail.com','698547215','58963254H'),(4,'Maria','user','Maria','Acevedo','maria@gmail.com','654873217','36547854N');
+INSERT INTO `Users` VALUES (1,'David','admin','David','Ansia','david@gmail.com','654987322','65498721E'),(2,'Guille','admin','Guillermo','Davila','guillermo@gmail.com','654987313','65498754T'),(3,'Jaime','user','Jaime','Perez','jaime@gmail.com','698547215','58963254H'),(4,'Maria','user','Maria','Acevedo','maria@gmail.com','654873217','36547854N'),(10,'Guillermo','admin1234','Guillermo','Davila Varela','guillermo.davilavarela@gmail.com','638233366','53193712W');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -174,4 +174,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-14 19:04:58
+-- Dump completed on 2016-11-18 15:39:16
