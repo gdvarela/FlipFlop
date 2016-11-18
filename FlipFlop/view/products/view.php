@@ -2,12 +2,9 @@
 //file: view/products/view.php
 require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
-
-$product = $view->getVariable("product");
-$currentuser = $view->getVariable("currentusername");
+$product = $view->getVariable("products");
 $errors = $view->getVariable("errors");
-
-$view->setVariable("title", "View Product");
+$view->setVariable("product", "View Product");
 
 ?>
 
