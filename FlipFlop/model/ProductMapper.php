@@ -19,13 +19,14 @@ class ProductMapper {
             $product->getPrice(), $product->getTags(), $product->getAddDate(), $product->getSeller()));
     }
 
+
     public function view($id){
         $stmt = $this->db->prepare("SELECT * FROM products WHERE id = ? ");
         $stmt->execute(array($id));
         $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
         return new Product($product["id"], $product["product_name"], $product["description"],
-            $product["price"], $product["tags"], $product["add_date"]);
+            $product["price"], $product["tags"], $product["add_date"], $product["seller"]);
     }
 
     public function listLast() {

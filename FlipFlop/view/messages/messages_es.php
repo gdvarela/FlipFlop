@@ -16,7 +16,7 @@
     "Contents" => "Contenido",
     "Author" => "Autor",
     "Actions" => "Acciones",
-    "Create post" => "Crear artículo",
+    "Create product" => "Crear producto",
     "Hello %s" => "Hola %s",
     "Modify post" => "Modificar artículo",
     "Post \"%s\" successfully added." => "Artículo \"%s\" añadido.",
