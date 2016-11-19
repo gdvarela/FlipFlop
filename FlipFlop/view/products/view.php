@@ -1,23 +1,13 @@
 <?php
 //file: view/products/view.php
 require_once(__DIR__."/../../core/ViewManager.php");
+require_once(__DIR__."/../../core/I18n.php");
 $view = ViewManager::getInstance();
-$product = $view->getVariable("products");
+$product = $view->getVariable("product");
 $errors = $view->getVariable("errors");
-$view->setVariable("product", "View Product");
-
+$view->setVariable("title", "View Product");
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="../css/style.css">
-        <link rel="stylesheet" href="../css/font-awesome.min.css">
-        <title>Title</title>
-    </head>
-
-    <body>
         <div class="content">
             <a class="button light-border" href="../FlipFlop/index.php">
                 <i class="fa fa-list fa-fw fa-3x" aria-hidden="true"></i>
@@ -34,7 +24,7 @@ $view->setVariable("product", "View Product");
             </div>
             <div class="des-head light-border">
                 <div class="p-row rowtext">
-                    <div class="p-title text"><?= i18n("Product").": ".htmlentities( $product->getProductName() ) ?></div>
+                    <div class="p-title text"><?= i18n("Product").": ".htmlentities($product->getProductName() ) ?></div>
                     <div class="p-price text"><?= i18n("Price").": ".htmlentities( $product->getPrice() ) ?></div>
                 </div>
                 <div>
@@ -46,6 +36,3 @@ $view->setVariable("product", "View Product");
                         </div>
                 </div>
         </div>
-    </body>
-
-</html>

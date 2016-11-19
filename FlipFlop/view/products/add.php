@@ -1,31 +1,28 @@
 <?php
 //file: view/products/add.php
 require_once(__DIR__."/../../core/ViewManager.php");
+require_once(__DIR__."/../../core/I18n.php");
 $view = ViewManager::getInstance();
-
 $product = $view->getVariable("product");
 $errors = $view->getVariable("errors");
-
 $view->setVariable("title", "Edit Product");
 
-?><h1><?= i18n("Create product")?></h1>
-<form action="index.php?controller=products&amp;action=add" method="POST">
-    <?= i18n("Product") ?>: <input type="text" name="name"
-                                 value="<?= $product->getTitle() ?>">
+?>
+
+<h1><?= i18n("Create product")?></h1>
+<form action="add.php?controller=products&amp;action=add" method="POST">
+    <?= i18n("Product") ?>: <input type="text" name="name">
     <?= isset($errors["product"])?$errors["product"]:"" ?><br>
 
     <?= i18n("Description") ?>: <br>
-    <textarea name="description" rows="4" cols="50"><?=
-        $product->getDescription() ?></textarea>
+    <textarea name="description" rows="4" cols="50"></textarea>
     <?= isset($errors["description"])?$errors["description"]:"" ?><br>
 
-    <?= i18n("Price") ?>: <input type="text" name="price"
-                                        value="<?= $product->getPrice() ?>">
+    <?= i18n("Price") ?>: <input type="text" name="price">
     <?= isset($errors["price"])?$errors["price"]:"" ?><br>
 
-    <?= i18n("Tags") ?>: <input type="text" name="tags"
-                                        value="<?= $product->getTags() ?>">
+    <?= i18n("Tags") ?>: <input type="text" name="tags">
     <?= isset($errors["tags"])?$errors["tags"]:"" ?><br>
 
-    <input type="submit" name="submit" value="submit">
+    <input type="submit" name="submit" value=<?= i18n("Send")?>>
 </form>

@@ -20,7 +20,7 @@ class ProductsController extends BaseController {
         $this->view->setLayout("header");
     }
 
-    public function create() {
+    public function add() {
         if (!isset($this->currentUser)) {
             throw new Exception("Not in session. Adding posts requires login");
         }
@@ -36,7 +36,6 @@ class ProductsController extends BaseController {
             $product->setAddDate( CURDATE() );
             $product->setSeller($_POST["seller"]);
 
-
             try{
                 $product->checkIsValidForRegister();
 
@@ -44,6 +43,7 @@ class ProductsController extends BaseController {
 
                     $this->productMapper->save($product);
                     $this->view->setFlash("Product ".$product->getProductName()." successfully added. ");
+                    echo "hola";
                     $this->view->redirect("products", "index");
 
                 } else {
@@ -59,11 +59,11 @@ class ProductsController extends BaseController {
             }
         }
 
-        // Put the User object visible to the view
+        // Put the product object visible to the view
         $this->view->setVariable("product", $product);
 
         // render the view (/view/products/add.php)
-        $this->view->render("products", "add");
+        $this->view->render("product", "add");
     }
 
     public function view() {

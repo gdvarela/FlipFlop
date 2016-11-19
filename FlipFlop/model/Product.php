@@ -26,7 +26,7 @@ class Product {
      * @param null $add_date
      * @param null $seller
      */
-    public function __construct($id = NULL, $product_name = NULL, $description = NULL, $price = NULL, $tags = NULL,
+    public function __construct($id = NULL, $product_name = "", $description = NULL, $price = NULL, $tags = NULL,
                                 $add_date = NULL, $seller = NULL) {
         $this->id = $id;
         $this->product_name = $product_name;
@@ -147,7 +147,6 @@ class Product {
     {
         $this->add_date = $add_date;
     }
-
 
     public function checkIsValidForRegister()
     {
