@@ -76,4 +76,8 @@ class UsersController extends BaseController {
         $this->view->redirect("index", "welcome");
     }
 
+    public function profile() {
+        $this->view->redirect("users", "profile");
+    }
+
 }
