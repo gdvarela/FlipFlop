@@ -1,7 +1,5 @@
 <?php
 require_once(__DIR__."/../core/PDOConnection.php");
-
-
 require_once(__DIR__."/../model/Product.php");
 
 class ProductMapper {
@@ -21,12 +19,17 @@ class ProductMapper {
 
 
     public function view($id){
-        $stmt = $this->db->prepare("SELECT * FROM products WHERE id = ? ");
+        $stmt = $this->db->prepare("SELECT * FROM products WHERE id=?");
         $stmt->execute(array($id));
         $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return new Product($product["id"], $product["product_name"], $product["description"],
-            $product["price"], $product["tags"], $product["add_date"], $product["seller"]);
+        if($product != null) {
+            return new Product(
+                $product["id"], $product["product_name"], $product["description"], $product["price"],
+                $product["tags"], $product["add_date"], $product["seller"]);
+        } else {
+            return NULL;
+        }
     }
 
     public function listLast() {

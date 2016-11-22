@@ -30,6 +30,14 @@ class ProductsController extends BaseController {
 
         if (isset($_POST["submit"])){
 
+            //Subimos la foto
+            $foto = $_FILES["archivo"]['tmp_name'];
+            $nombre_foto = $_FILES["archivo"]['name'];
+            $tipo = $_FILES["archivo"]['type'];
+            $tamano  = $_FILES["archivo"]['size'];
+            $destino = "../resources/" . $nombre_foto;
+
+
             $product->setProductName($_POST["name"]);
             $product->setDescription($_POST["description"]);
             $product->setPrice($_POST["price"]);
@@ -66,16 +74,26 @@ class ProductsController extends BaseController {
         $this->view->render("products", "index");
     }
 
-    public function view() {
-
+    public function view(){
         if (!isset($_GET["id"])) {
             throw new Exception("id is mandatory");
         }
 
         $id = $_GET["id"];
+
+        // find the Product object in the database
         $product = $this->productMapper->view($id);
+
+        if ($product == NULL) {
+            throw new Exception("no such product with id: ".$id);
+        }
+
+        // put the Post object to the view
         $this->view->setVariable("product", $product);
-        $this->view->render("products", "view");
+
+        // render the view (/view/products/view.php)
+        $this->view->render("posts", "view");
+
     }
 
 }

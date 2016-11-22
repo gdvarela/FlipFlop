@@ -5,7 +5,7 @@ require_once(__DIR__."/../../core/I18n.php");
 $view = ViewManager::getInstance();
 $product = $view->getVariable("product");
 $errors = $view->getVariable("errors");
-$view->setVariable("title", "Edit Product");
+$view->setVariable("title", "Add Product");
 
 ?>
 
@@ -32,6 +32,9 @@ $view->setVariable("title", "Edit Product");
 
         <?= i18n("Tags") ?>: <input type="text" name="tags">
         <?= isset($errors["tags"])?$errors["tags"]:"" ?><br>
+
+        <?= i18n("Picture") ?>: <input type="file" name="foto" accept="image/jpeg, image/png ">
+        <?= isset($errors["icture"])?$errors["picture"]:"" ?><br>
 
         <input type="submit" name="submit" value=<?= i18n("Send")?>>
     </form>

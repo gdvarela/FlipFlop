@@ -85,9 +85,8 @@ class UserMapper
         return $user;
     }
 
-    public function isValidUser($login)
-    {
-        $stmt = $this->db->prepare("SELECT * FROM Users where login=?");
+    public function isValidUser($login) {
+        $stmt = $this->db->prepare("SELECT * FROM Users where login = ?");
         $stmt->execute(array($login));
 
         if ($stmt->fetchColumn() > 0) {
@@ -96,5 +95,30 @@ class UserMapper
             return false;
         }
     }
+
+    public function date(){
+        $stmt = $this->db->prepare("SELECT CURDATE() ");
+        $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->fetchColumn(0);
+        return (String)$stmt;
+    }
+
+    public function userproducts($id){
+
+        $stmt = $this->db->query("SELECT * FROM Products where seller = ?");
+        $stmt->execute(array($id));
+
+        $userproducts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $products = array();
+
+        foreach ($userproducts as $product) {
+            array_push($products, new Product($product["id"], $product["product_name"], $product["description"],
+                $product["price"], $product["tags"], $product["add_date"]));
+        }
+
+        return $products;
+    }
+
 
 }

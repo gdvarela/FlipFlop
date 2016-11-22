@@ -80,4 +80,15 @@ class UsersController extends BaseController {
         $this->view->redirect("users", "profile");
     }
 
+    public function date() {
+        $this->userMapper->date();
+        $this->view->setVariable("date");
+    }
+
+    public function userProducts($id) {
+        $this->userMapper->userproducts($id);
+    }
+
+
+
 }
