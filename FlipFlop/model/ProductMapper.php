@@ -22,7 +22,6 @@ class ProductMapper {
         $stmt = $this->db->prepare("SELECT * FROM products WHERE id=?");
         $stmt->execute(array($id));
         $product = $stmt->fetch(PDO::FETCH_ASSOC);
-
         if($product != null) {
             return new Product(
                 $product["id"], $product["product_name"], $product["description"], $product["price"],

@@ -11,7 +11,7 @@ $view->setVariable("date", $date);
 ?>
 
 <a><?= htmlentities( $date ) ?></a>
-<a href="../products/add.php">Añadir producto</a>
+<a href="?controller=products&action=add">Añadir producto</a>
 <br>
 <a>Mis productos</a>
 <br>

@@ -4,11 +4,8 @@ require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
 $product = $view->getVariable("product");
 $errors = $view->getVariable("errors");
-
 $view->setVariable("title", "View Product");
-
 ?>
-
 <div class="content">
     <a class="button light-border" href="../index.php">
         <i class="fa fa-list fa-fw fa-3x" aria-hidden="true"></i>

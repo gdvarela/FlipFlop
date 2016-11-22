@@ -77,7 +77,8 @@ class UsersController extends BaseController {
     }
 
     public function profile() {
-        $this->view->redirect("users", "profile");
+        $this->view->setLayout("logged");
+        $this->view->render("users", "profile");
     }
 
     public function date() {

@@ -70,8 +70,9 @@ class ProductsController extends BaseController {
         // Put the product object visible to the view
         $this->view->setVariable("product", $product);
 
+        $this->view->setLayout("logged");
         // render the view (/view/products/add.php)
-        $this->view->render("products", "index");
+        $this->view->render("products", "add");
     }
 
     public function view(){
@@ -91,8 +92,9 @@ class ProductsController extends BaseController {
         // put the Post object to the view
         $this->view->setVariable("product", $product);
 
+        $this->view->setLayout("logged");
         // render the view (/view/products/view.php)
-        $this->view->render("posts", "view");
+        $this->view->render("products", "view");
 
     }
 
