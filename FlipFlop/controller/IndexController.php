@@ -35,7 +35,7 @@ class IndexController extends BaseController
         $user = new User();
         $errors = array();
 
-        if (isset($_SESSION["currentuser"])) {
+        if (isset($_SESSION["currentusername"])) {
             $this->view->setLayout("logged");
         }
 
@@ -73,7 +73,7 @@ class IndexController extends BaseController
                 if (isset($userLogin[0]["id"])) {
                     $this->view->setLayout("logged");
                     $_SESSION["currentuser"] = $userLogin[0]["id"];
-                    $_SESSION["currentuserName"] = $userLogin[0]["name"];
+                    $_SESSION["currentusername"] = $userLogin[0]["name"];
                 } else {
 
                     $errors["userLogin"] = $_POST["userLogin"];

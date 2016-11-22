@@ -25,7 +25,7 @@ if($view->hasFlash()) {
     <div class="logged text">
         <div class="profile">
             <i class="fa fa-user" aria-hidden="true"></i>
-            <span class="profile-name"><?= $_SESSION["currentuserName"] ?></span>
+            <span class="profile-name"><?= $_SESSION["currentusername"] ?></span>
         </div>
         <form class="profile-form" action="?controller=users&action=logout" method="POST">
             <button class="l_button" type="submit">Logout</button>
