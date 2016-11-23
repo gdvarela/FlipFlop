@@ -83,14 +83,17 @@ footer {
 }
 
 .chat-tab {
-    position: relative;
-    display: table;
-    width: 10%;
-    height: 90%;
+    float: right;
+    max-width: 100px;
+    padding: 5px;
+    height: 100%;
     background-color: silver;
+    border: solid 1px black;
+    border-radius: 10px;
+    display: table;
 }
 
-.chat-tab .text {
+.chat-tab-text {
     display: table-cell;
     vertical-align: middle;
 }
@@ -260,6 +263,7 @@ body{
 }
 
 .up-button {
+    float: left;
     width: 5%;
     height: 100%;
     text-decoration: none;
@@ -366,8 +370,6 @@ body{
     position: fixed;
     bottom: 0;
     left: 0;
-    opacity: 0.8;
-    /*border-radius: 10px 10px 0 0;*/
 }
 
 /* Small devices (tablets, 768px and up) */

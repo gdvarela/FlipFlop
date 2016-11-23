@@ -17,6 +17,20 @@ load = function() {
             modal.style.display = "none";
         }
     }
+
+    var $testButton = $('#testbutton');
+    var xmlhttp = new XMLHttpRequest();
+
+    $testButton.click( function () {
+        xmlhttp.open("GET", "index.php?controller=AJAX&action=test", true);
+        xmlhttp.send();
+    });
+
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(this.response);
+        }
+    };
 }
 
 window.onload = function() {
