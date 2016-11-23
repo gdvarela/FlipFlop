@@ -19,8 +19,8 @@ if($view->hasFlash()) {
     echo "<div class=\"pops\"><span class=\"pop-text\">".$view->popFlash()."</span></div>";
 }
 ?>
-<div class="logo"></div>
-<div class="title text"> Flip - Flip</div>
+<a href="index.php" class="logo"></a>
+<a href="index.php" class="title text">Flip - Flip</a>
 <div class="login">
     <div class="logged text">
         <div class="profile">
@@ -35,7 +35,6 @@ if($view->hasFlash()) {
         </form>
     </div>
 </div>
-<?= $view->popFlash() ?>
 <?= $view->getFragment(ViewManager::DEFAULT_FRAGMENT) ?>
 <div class="footer">
     <div class="foot">

@@ -46,6 +46,7 @@ class BaseController
         $this->user = new User();
         $this->view->setVariable("user", $this->user);
 
+        $this->view->deleteFlash();
         $this->view->setLayout("header");
 
         if (isset($_SESSION["currentuser"])) {

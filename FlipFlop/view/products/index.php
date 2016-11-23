@@ -3,7 +3,6 @@ require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
 $products = $view->getVariable("products");
 ?>
-
 <div class="content">
     <div class="search">
         <form action="">

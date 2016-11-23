@@ -165,7 +165,6 @@ class ViewManager
             //a flash variable, will be stored in session_start
             if (!isset($_SESSION["viewmanager__flasharray__"])) {
                 $_SESSION["viewmanager__flasharray__"][$varname] = $value;
-                print_r($_SESSION["viewmanager__flasharray__"]);
             } else {
                 $_SESSION["viewmanager__flasharray__"][$varname] = $value;
             }
@@ -226,6 +225,10 @@ class ViewManager
     public function hasFlash()
     {
         return isset($_SESSION["viewmanager__flasharray__"]["__flashmessage__"]);
+    }
+
+    public function deleteFlash() {
+        unset($_SESSION["viewmanager__flasharray__"]);
     }
 
 
