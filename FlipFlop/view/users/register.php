@@ -1,5 +1,5 @@
 <?php 
- //file: view/users/register.php
+ //file: view/users/loadRegister.php
  
  require_once(__DIR__."/../../core/ViewManager.php");
  $view = ViewManager::getInstance();

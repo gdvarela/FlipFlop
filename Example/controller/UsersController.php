@@ -85,9 +85,9 @@ class UsersController extends BaseController {
   }
 
  /**
-   * Action to register
+   * Action to loadRegister
    * 
-   * When called via GET, it shows the register form.
+   * When called via GET, it shows the loadRegister form.
    * When called via POST, it tries to add the user
    * to the database.
    * 
@@ -99,9 +99,9 @@ class UsersController extends BaseController {
    *
    * The views are:
    * <ul>
-   * <li>users/register: If this action is reached via HTTP GET (via include)</li>
+   * <li>users/loadRegister: If this action is reached via HTTP GET (via include)</li>
    * <li>users/login: If login succeds (via redirect)</li>
-   * <li>users/register: If validation fails (via include). Includes these view variables:</li>
+   * <li>users/loadRegister: If validation fails (via include). Includes these view variables:</li>
    * <ul>   
    *  <li>user: The current User instance, empty or being added
    *  (but not validated)</li>      
@@ -157,8 +157,8 @@ class UsersController extends BaseController {
     // Put the User object visible to the view
     $this->view->setVariable("user", $user);
     
-    // render the view (/view/users/register.php)
-    $this->view->render("users", "register");
+    // render the view (/view/users/loadRegister.php)
+    $this->view->render("users", "loadRegister");
     
   }
 

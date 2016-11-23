@@ -1,10 +1,16 @@
 load = function() {
 
-    var modal = document.getElementById('register-modal');
-    var btn = document.getElementById("register-button");
-    var data = document.getElementById("register-data");
+    loadRegister();
 
-    if (data.getAttribute("value")=="register") {
+    loadChat();
+}
+
+loadRegister = function () {
+    var modal = document.getElementById('loadRegister-modal');
+    var btn = document.getElementById("loadRegister-button");
+    var data = document.getElementById("loadRegister-data");
+
+    if (data.getAttribute("value")=="loadRegister") {
         modal.style.display = "block";
     }
 
@@ -17,20 +23,38 @@ load = function() {
             modal.style.display = "none";
         }
     }
+}
 
-    var $testButton = $('#testbutton');
+loadChat = function () {
+
     var xmlhttp = new XMLHttpRequest();
+    var $chatModal = $('.loadChat-modal');
 
-    $testButton.click( function () {
-        xmlhttp.open("GET", "index.php?controller=AJAX&action=test", true);
-        xmlhttp.send();
+    $('#chat1').click(function () {
+        if ($chatModal.css('display') == 'none') {
+            $chatModal.show();
+
+            xmlhttp.open("GET", "index.php?controller=AJAX&action=test", true);
+            xmlhttp.send();
+        } else {
+            $chatModal.hide();
+        }
+
+    });
+
+    $('#close-loadChat').click(function () {
+        $chatModal.hide();
     });
 
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(this.response);
+            insertChat()
         }
     };
+}
+
+insertChat = function () {
+    
 }
 
 window.onload = function() {

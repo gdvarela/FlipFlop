@@ -57,7 +57,7 @@ class IndexController extends BaseController
                 }
             } catch (ValidationException $ex) {
                 $errors = $ex->getErrors();
-                $errors["register"] = "register";
+                $errors["loadRegister"] = "loadRegister";
             }
         }
         if (isset($_POST["userLogin"])) {
