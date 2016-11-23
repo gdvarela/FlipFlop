@@ -81,15 +81,10 @@ class UsersController extends BaseController {
         $this->view->render("users", "profile");
     }
 
-    public function date() {
-        $this->userMapper->date();
-        $this->view->setVariable("date");
-    }
 
     public function userProducts($id) {
         $this->userMapper->userproducts($id);
     }
-
 
 
 }

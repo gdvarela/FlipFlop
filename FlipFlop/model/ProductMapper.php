@@ -12,7 +12,7 @@ class ProductMapper {
 
 
     public function save($product){
-        $stmt = $this->db->prepare("INSERT INTO Products values (?,?,?,?,?,?)");
+        $stmt = $this->db->prepare("INSERT INTO Products (product_name, description, price, tags, add_date, seller) values (?,?,?,?,?,?)");
         $stmt->execute(array($product->getProductName(), $product->getDescription(),
             $product->getPrice(), $product->getTags(), $product->getAddDate(), $product->getSeller()));
     }
@@ -44,5 +44,26 @@ class ProductMapper {
         }
 
         return $products;
+    }
+
+    public function exists($name) {
+        $stmt = $this->db->prepare("SELECT * FROM Products where product_name=?");
+        $stmt->execute(array($name));
+
+        if ($stmt->fetchColumn() > 0) {
+            return true;
+        }
+    }
+
+    public function saveImg($uri, $pid){
+        $stmt = $this->db->prepare("INSERT INTO Images (uri, idProduct) values   (?,?)");
+        $stmt->execute(array($uri, $pid));
+    }
+
+    public function pid($name) {
+        $stmt = $this->db->prepare("SELECT id FROM Products where product_name=?");
+        $stmt->execute(array($name));
+
+        return $stmt->fetchColumn(0);
     }
 }

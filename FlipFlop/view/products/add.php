@@ -6,20 +6,12 @@ $view = ViewManager::getInstance();
 $product = $view->getVariable("product");
 $errors = $view->getVariable("errors");
 $view->setVariable("title", "Add Product");
-
 ?>
 
 <div class="content">
-    <div class="search">
-        <form action="">
-            <input id="search-box" class="text light-border" placeholder="Search" type="search">
-        </form>
-    </div>
-    <div class="chat-buttom ">
-    </div>
 
     <h1><?= i18n("Create product")?></h1>
-    <form action="?controller=products&amp;action=add" method="POST">
+    <form action="?controller=products&amp;action=add" enctype="multipart/form-data" method="POST">
         <?= i18n("Product") ?>: <input type="text" name="name">
         <?= isset($errors["product"])?$errors["product"]:"" ?><br>
 
@@ -33,8 +25,8 @@ $view->setVariable("title", "Add Product");
         <?= i18n("Tags") ?>: <input type="text" name="tags">
         <?= isset($errors["tags"])?$errors["tags"]:"" ?><br>
 
-        <?= i18n("Picture") ?>: <input type="file" name="foto" accept="image/jpeg, image/png ">
-        <?= isset($errors["icture"])?$errors["picture"]:"" ?><br>
+        <?= i18n("Picture") ?>: <input type="file" id="file" name="file" multiple="multiple" accept="image/*" />
+        <?= isset($errors["picture"])?$errors["picture"]:"" ?><br>
 
         <input type="submit" name="submit" value=<?= i18n("Send")?>>
     </form>

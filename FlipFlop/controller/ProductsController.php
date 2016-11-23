@@ -6,16 +6,21 @@ require_once(__DIR__."/../core/I18n.php");
 require_once(__DIR__."/../model/Product.php");
 require_once(__DIR__."/../model/ProductMapper.php");
 
+require_once(__DIR__."/../model/User.php");
+require_once(__DIR__."/../model/UserMapper.php");
+
 require_once(__DIR__."/../controller/BaseController.php");
 
 class ProductsController extends BaseController {
 
     private $productMapper;
+    private $userMapper;
 
     public function __construct() {
         parent::__construct();
 
         $this->productMapper = new ProductMapper();
+        $this->userMapper = new UserMapper();
     }
 
     public function add() {
@@ -29,28 +34,35 @@ class ProductsController extends BaseController {
         if (isset($_POST["submit"])){
 
             //Subimos la foto
-            $foto = $_FILES["archivo"]['tmp_name'];
-            $nombre_foto = $_FILES["archivo"]['name'];
-            $tipo = $_FILES["archivo"]['type'];
-            $tamano  = $_FILES["archivo"]['size'];
-            $destino = "../resources/" . $nombre_foto;
+            //Subimos la pagina
+            $foto = $_FILES["file"]['tmp_name'];
+            $nombre = $_FILES["file"]['name'];
+            $extension  = pathinfo($nombre, PATHINFO_EXTENSION);
 
+            $newname = $_POST["name"].".".$extension;
+            $destino = "resources/" . $newname;
+            move_uploaded_file($foto, $destino);
 
             $product->setProductName($_POST["name"]);
             $product->setDescription($_POST["description"]);
             $product->setPrice($_POST["price"]);
             $product->setTags($_POST["tags"]);
-            $product->setAddDate( CURDATE() );
-            $product->setSeller("");
+            $product->setAddDate( date('Y-m-d', time()) );
+            $product->setSeller(1);
 
             try{
                 $product->checkIsValidForRegister();
 
                 if (!$this->productMapper->exists($_POST["name"])){
 
+                    //guardamos los datos en la tabla de imagenes
+                    //TODO foreach
                     $this->productMapper->save($product);
+                    $pid = $this->productMapper->pid($_POST["name"]);
+                    $cont = 1;
+                    $this->productMapper->saveImg($pid.$cont, $pid);
                     $this->view->setFlash("Product ".$product->getProductName()." successfully added. ");
-                    $this->view->redirect("products", "index");
+                    $this->view->redirect("users", "profile");
 
                 } else {
                     $errors = array();

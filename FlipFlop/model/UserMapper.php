@@ -96,13 +96,6 @@ class UserMapper
         }
     }
 
-    public function date(){
-        $stmt = $this->db->prepare("SELECT CURDATE() ");
-        $stmt->fetch(PDO::FETCH_ASSOC);
-        $stmt->fetchColumn(0);
-        return (String)$stmt;
-    }
-
     public function userproducts($id){
 
         $stmt = $this->db->query("SELECT * FROM Products where seller = ?");
