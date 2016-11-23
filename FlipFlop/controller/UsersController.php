@@ -65,8 +65,8 @@ class UsersController extends BaseController {
         // Put the User object visible to the view
         $this->view->setVariable("user", $user);
 
-        // render the view (/view/users/register.php)
-        $this->view->render("users", "register");
+        // render the view (/view/users/loadRegister.php)
+        $this->view->render("users", "loadRegister");
 
     }
 

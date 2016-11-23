@@ -93,9 +93,24 @@ footer {
     display: table;
 }
 
+.chat-tab:hover {
+    cursor: pointer;
+}
+
+
 .chat-tab-text {
     display: table-cell;
     vertical-align: middle;
+}
+
+.close-icon {
+    float: right;
+    margin-right: 15px;
+    margin-top: 5px;
+}
+
+.close-icon:hover {
+    cursor: pointer;
 }
 
 A:link {text-decoration:none}
@@ -335,6 +350,10 @@ body{
     background-color: #ff533d;
     border-radius: 5px;
     width: 40%;
+}
+
+.l_button:hover {
+    cursor: pointer;
 }
 
 .footer {

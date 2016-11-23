@@ -23,10 +23,10 @@ if ($view->hasFlash()) {
     echo "<div class=\"pops\"><span class=\"pop-text\">" . $view->popFlash() . "</span></div>";
 }
 ?>
-<data id="register-data" value="<?= $errors["register"] ?>"></data>
-<?php $errors["register"] = NULL; ?>
+<data id="register-data" value="<?= $errors["loadRegister"] ?>"></data>
+<?php $errors["loadRegister"] = NULL; ?>
 <a href="index.php" class="logo"></a>
-<a href="index.php" class="title text">Flip - Flip</a>
+<a href="index.php" class="title text">Flip - Flop</a>
 <div class="login">
     <form action="?controller=index&action=welcome" method="POST">
         <div class="login-input">
@@ -139,27 +139,30 @@ if ($view->hasFlash()) {
                 <i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i>
             </a>
         </div>
-        <div class="chat-tab">
+        <div class="chat-tab" data-id="1">
             <span class="text chat-tab-text">Chat 1</span>
         </div>
     </div>
 </div>
 
-<div class="chat-modal">
+<div class="chat-modal" hidden="true">
     <div class="chat-modal-content">
-        <div class="chat-modal-tittle text">Alpargata: Juan</div>
-        <div class="chat-self">
-            <span>Yo:</span>
-            <span>Hola</span>
+        <div class="chat-modal-tittle text">Alpargata: Juan
+            <i id="close-chat" class="close-icon fa fa-times fa-fw" aria-hidden="true"></i>
         </div>
-        <div class="chat-their">
-            <span>Hola</span>
+        <div class="msg-content">
+            <div class="chat-self">
+                <span>Yo:</span>
+                <span>Hola</span>
+            </div>
+            <div class="chat-their">
+                <span>Hola</span>
+            </div>
         </div>
-
     </div>
     <div class="chat-modal-input">
         <form>
-            <input class="chat-input" type="text" name="pass" placeholder="Enter your message">
+            <input class="chat-input" type="text" name="chatInput" placeholder="Enter your message">
         </form>
     </div>
 </div>
