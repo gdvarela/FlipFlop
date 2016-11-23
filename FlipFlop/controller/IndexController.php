@@ -26,35 +26,29 @@ class IndexController extends BaseController
         $this->userMapper = new UserMapper();
         $this->productMapper = new ProductMapper();
 
-        $this->view->setLayout("header");
     }
 
     public function welcome()
     {
 
-        $user = new User();
         $errors = array();
-
-        if (isset($_SESSION["currentusername"])) {
-            $this->view->setLayout("logged");
-        }
 
         if (isset($_POST["login"])) {
 
-            $user->setName($_POST["name"]);
-            $user->setLastname($_POST["lastname"]);
-            $user->setPass($_POST["password"]);
-            $user->setDNI($_POST["dni"]);
-            $user->setEmail($_POST["email"]);
-            $user->setLogin($_POST["login"]);
-            $user->setPhone($_POST["phone"]);
+            $this->user->setName($_POST["name"]);
+            $this->user->setLastname($_POST["lastname"]);
+            $this->user->setPass($_POST["password"]);
+            $this->user->setDNI($_POST["dni"]);
+            $this->user->setEmail($_POST["email"]);
+            $this->user->setLogin($_POST["login"]);
+            $this->user->setPhone($_POST["phone"]);
 
             try {
-                $user->checkIsValidForRegister($_POST["password2"]);
+                $this->user->checkIsValidForRegister($_POST["password2"]);
 
                 if (!$this->userMapper->loginExists($_POST["login"])) {
-                    $this->userMapper->save($user);
-                    $errors["userLogin"] = $user->getLogin();
+                    $this->userMapper->save($this->user);
+                    $errors["userLogin"] = $this->user->getLogin();
 
                 } else {
                     $errors = array();
@@ -65,7 +59,8 @@ class IndexController extends BaseController
                 $errors = $ex->getErrors();
                 $errors["register"] = "register";
             }
-        } if (isset($_POST["userLogin"])) {
+        }
+        if (isset($_POST["userLogin"])) {
 
             if ($this->userMapper->isValidUser($_POST["userLogin"])) {
                 $userLogin = $this->userMapper->isValidPass($_POST["userLogin"], $_POST["pass"]);
@@ -84,7 +79,7 @@ class IndexController extends BaseController
             }
         }
 
-        $this->view->setVariable("user", $user);
+        $this->view->setVariable("user", $this->user);
         $this->view->setVariable("errors", $errors);
 
         $products = $this->productMapper->listLast();
