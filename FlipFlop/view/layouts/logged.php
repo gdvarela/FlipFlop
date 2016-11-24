@@ -20,7 +20,7 @@ if($view->hasFlash()) {
 }
 ?>
 <a href="index.php" class="logo"></a>
-<a href="index.php" class="title text">Flip - Flip</a>
+<a href="index.php" class="title text">Flip - Flop</a>
 <div class="login">
     <div class="logged text">
         <div class="profile">
