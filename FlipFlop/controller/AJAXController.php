@@ -29,7 +29,9 @@ class AJAXController extends BaseController
 
     public function messages()
     {
-        $chat = $this->chatMapper->getMessages($_POST['idChat']);
+        $chat = array();
+        array_push($chat, $this->chatMapper->getChatInfo($_POST['idChat']));
+        array_push($chat, $this->chatMapper->getMessages($_POST['idChat'], $_POST['last']));
 
         echo json_encode($chat);
     }
