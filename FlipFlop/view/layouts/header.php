@@ -139,34 +139,8 @@ if ($view->hasFlash()) {
                 <i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i>
             </a>
         </div>
-        <div class="chat-tab" data-id="1">
-            <span class="text chat-tab-text">Chat 1</span>
-        </div>
     </div>
 </div>
-
-<div class="chat-modal" hidden="true">
-    <div class="chat-modal-content">
-        <div class="chat-modal-tittle text">Alpargata: Juan
-            <i id="close-chat" class="close-icon fa fa-times fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="msg-content">
-            <div class="chat-self">
-                <span>Yo:</span>
-                <span>Hola</span>
-            </div>
-            <div class="chat-their">
-                <span>Hola</span>
-            </div>
-        </div>
-    </div>
-    <div class="chat-modal-input">
-        <form>
-            <input class="chat-input" type="text" name="chatInput" placeholder="Enter your message">
-        </form>
-    </div>
-</div>
-
 </body>
 
 </html>

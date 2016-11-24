@@ -10,12 +10,14 @@ loadRegister = function () {
     var btn = document.getElementById("register-button");
     var data = document.getElementById("register-data");
 
-    if (data.getAttribute("value")=="register") {
+    if (data && data.getAttribute("value")=="register") {
         modal.style.display = "block";
     }
 
-    btn.onclick = function() {
-        modal.style.display = "block";
+    if(btn) {
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
     }
 
     window.onclick = function(event) {
