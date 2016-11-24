@@ -79,6 +79,10 @@ class IndexController extends BaseController
             }
         }
 
+        if (!isset($_SESSION["currentusername"])) {
+            $this->view->setLayout("header");
+        }
+
         $this->view->setVariable("user", $this->user);
         $this->view->setVariable("errors", $errors);
 
@@ -86,6 +90,5 @@ class IndexController extends BaseController
         $this->view->setVariable("products", $products);
 
         $this->view->render("products", "index");
-
     }
 }

@@ -10,12 +10,14 @@ loadRegister = function () {
     var btn = document.getElementById("register-button");
     var data = document.getElementById("register-data");
 
-    if (data.getAttribute("value")=="register") {
+    if (data && data.getAttribute("value")=="register") {
         modal.style.display = "block";
     }
 
-    btn.onclick = function() {
-        modal.style.display = "block";
+    if(btn) {
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
     }
 
     window.onclick = function(event) {
@@ -29,7 +31,7 @@ loadChat = function () {
 
     var $chatModal = $('.chat-modal');
     var $chatTabs = $('.chat-tab');
-
+    var lastMsg = "new";
     $chatTabs.each(function () {
         var chatID = $(this).data("id");
         $(this).click(function () {
@@ -38,17 +40,21 @@ loadChat = function () {
 
                 $.ajax({
                         url      : 'index.php?controller=AJAX&action=messages',
-                        data     : {idChat: chatID},
+                        data     : {idChat: chatID, last: lastMsg},
                         type     : 'post',
                         success  : function(Result){
                             var chat = $.parseJSON(Result);
-                            console.log(chat);
+                            var chatInfo = chat[0];
+                            chat = chat[1];
+                            lastMsg = chat[chat.length - 1].time;
+                            console.log("lastMsg", lastMsg);
 
+                            $('.chat-modal-tittle-name').text(chatInfo[0].product_name + ": " + chatInfo[0].name);
                             chat.forEach(function (msg) {
                                 if (msg.owner == 1) {
-                                    //append.msg-content
+                                    $('.msg-content').append("<div class='chat-self'><span>Yo:</span><span>" + msg.message + "</span></div>")
                                 } else {
-
+                                    $('.msg-content').append("<div class='chat-their'><span>" + msg.message + "</span></div>")
                                 }
                             });
                         }
