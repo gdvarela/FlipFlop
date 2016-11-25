@@ -14,11 +14,11 @@ class ChatMapper {
     {
         if($lastTime=="new") {
             $stmt = $this->db->prepare("SELECT * FROM Messages WHERE idChat=? order by time asc");
+            $stmt->execute(array($chatId));
         } else {
-            $stmt = $this->db->prepare("SELECT * FROM Messages WHERE idChat=? and time > $lastTime order by time asc");
+            $stmt = $this->db->prepare("SELECT * FROM Messages WHERE idChat=? and time > ? order by time asc");
+            $stmt->execute(array($chatId, $lastTime));
         }
-
-        $stmt->execute(array($chatId));
         $chat = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return $chat;
