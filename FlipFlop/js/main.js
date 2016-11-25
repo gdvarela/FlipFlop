@@ -47,7 +47,6 @@ loadChat = function () {
                             var chatInfo = chat[0];
                             chat = chat[1];
                             lastMsg = chat[chat.length - 1].time;
-                            console.log("lastMsg", lastMsg);
 
                             $('.chat-modal-tittle-name').text(chatInfo[0].product_name + ": " + chatInfo[0].name);
                             chat.forEach(function (msg) {

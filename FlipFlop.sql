@@ -86,11 +86,11 @@ CREATE TABLE `Messages` (
   `message` text COLLATE latin1_spanish_ci NOT NULL,
   `idChat` int(11) NOT NULL,
   `owner` bit(1) NOT NULL,
-  `time` timestamp NULL DEFAULT NULL,
+  `time` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`idMessages`),
   KEY `idChat_idx` (`idChat`),
   CONSTRAINT `idChat` FOREIGN KEY (`idChat`) REFERENCES `Chats` (`idChats`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +99,7 @@ CREATE TABLE `Messages` (
 
 LOCK TABLES `Messages` WRITE;
 /*!40000 ALTER TABLE `Messages` DISABLE KEYS */;
-INSERT INTO `Messages` VALUES (2,'hi',1,'','2011-12-20 07:14:56'),(3,'hi',1,'\0','2011-12-20 07:14:57'),(4,'You Noob',1,'\0','2015-10-20 06:14:58'),(5,'Report',1,'','2011-10-20 06:14:56'),(6,'Hello sir',2,'','2011-08-03 06:14:56'),(7,'soapdijaosdija',2,'\0','2012-10-03 07:14:50'),(8,'Anyone there?',3,'\0','2011-10-20 06:14:56'),(9,'Io Bro Whats Up MOTH*****',4,'','2011-10-20 06:14:56'),(10,'hi',5,'','2011-10-20 06:14:56'),(11,'I want to buy your lugs',5,'','2011-10-20 06:14:57'),(12,'500 €',5,'\0','2011-10-20 06:14:58'),(13,'400 €',5,'','2011-10-20 06:14:59'),(14,'200 €',5,'\0','2011-10-20 06:15:00'),(15,'You idiot',5,'','2011-10-20 06:15:01');
+INSERT INTO `Messages` VALUES (2,'hi',1,'',1480073707500),(3,'hi',1,'\0',1480073707501),(4,'You Noob',1,'\0',1480073707502),(5,'Report',1,'',1480073707503),(6,'Hello sir',2,'',1480073707696),(7,'soapdijaosdija',2,'\0',1480073707697),(8,'Anyone there?',3,'\0',1480073707696),(9,'Io Bro Whats Up MOTH*****',4,'',1480073707696),(10,'hi',5,'',1480073707696),(11,'I want to buy your lugs',5,'',1480073707698),(12,'500 €',5,'\0',1480073707699),(13,'400 €',5,'',1480073707711),(14,'200 €',5,'\0',1480073707715),(15,'You idiot',5,'',1480073707800),(16,'OMG',1,'',1480073707504);
 /*!40000 ALTER TABLE `Messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,4 +174,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-18 15:39:16
+-- Dump completed on 2016-11-25 13:35:27
