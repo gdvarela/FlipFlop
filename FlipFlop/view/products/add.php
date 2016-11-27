@@ -10,24 +10,30 @@ $view->setVariable("title", "Add Product");
 
 <div class="content">
 
-    <h1><?= i18n("Create product")?></h1>
-    <form action="?controller=products&amp;action=add" enctype="multipart/form-data" method="POST">
-        <?= i18n("Product") ?>: <input type="text" name="name">
-        <?= isset($errors["product"])?$errors["product"]:"" ?><br>
+    <div>
+        <h1 class=""><?= i18n("Create Product")?></h1>
+        <form action="?controller=products&amp;action=add" enctype="multipart/form-data" method="POST">
+            <?= i18n("Product") ?>: <br>
+            <input type="text" name="name" class="add-input">
+            <?= isset($errors["product"])?$errors["product"]:"" ?><br>
 
-        <?= i18n("Description") ?>: <br>
-        <textarea name="description" rows="4" cols="50"></textarea>
-        <?= isset($errors["description"])?$errors["description"]:"" ?><br>
+            <?= i18n("Description") ?>: <br>
+            <textarea name="description" class="add-desc"></textarea>
+            <?= isset($errors["description"])?$errors["description"]:"" ?><br>
 
-        <?= i18n("Price") ?>: <input type="text" name="price">
-        <?= isset($errors["price"])?$errors["price"]:"" ?><br>
+            <?= i18n("Price") ?>: <br>
+            <input type="text" name="price" class="add-input">
+            <?= isset($errors["price"])?$errors["price"]:"" ?><br>
 
-        <?= i18n("Tags") ?>: <input type="text" name="tags">
-        <?= isset($errors["tags"])?$errors["tags"]:"" ?><br>
+            <?= i18n("Tags") ?>: <br>
+            <input type="text" name="tags" class="add-input">
+            <?= isset($errors["tags"])?$errors["tags"]:"" ?><br>
 
-        <?= i18n("Picture") ?>: <input type="file" id="file" name="file" multiple="multiple" accept="image/*" />
-        <?= isset($errors["picture"])?$errors["picture"]:"" ?><br>
+            <?= i18n("Picture(s)") ?>: <br>
+            <input class="add-input" type="file" id="file" name="files[]" multiple="multiple" accept="image/*" />
+            <?= isset($errors["picture"])?$errors["picture"]:"" ?><br>
 
-        <input type="submit" name="submit" value=<?= i18n("Send")?>>
-    </form>
+            <input class="add-button" type="submit" name="submit" value=<?= i18n("Create")?>>
+        </form>
+    </div>
 </div>

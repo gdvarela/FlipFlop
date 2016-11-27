@@ -33,34 +33,38 @@ class ProductsController extends BaseController {
 
         if (isset($_POST["submit"])){
 
-            //Subimos la foto
-            //Subimos la pagina
-            $foto = $_FILES["file"]['tmp_name'];
-            $nombre = $_FILES["file"]['name'];
-            $extension  = pathinfo($nombre, PATHINFO_EXTENSION);
-
-            $newname = $_POST["name"].".".$extension;
-            $destino = "resources/" . $newname;
-            move_uploaded_file($foto, $destino);
-
             $product->setProductName($_POST["name"]);
             $product->setDescription($_POST["description"]);
             $product->setPrice($_POST["price"]);
             $product->setTags($_POST["tags"]);
             $product->setAddDate( date('Y-m-d', time()) );
-            $product->setSeller(1);
+            $product->setSeller($_SESSION["currentuser"]);
 
             try{
                 $product->checkIsValidForRegister();
 
                 if (!$this->productMapper->exists($_POST["name"])){
 
-                    //guardamos los datos en la tabla de imagenes
-                    //TODO foreach
                     $this->productMapper->save($product);
                     $pid = $this->productMapper->pid($_POST["name"]);
+
                     $cont = 1;
-                    $this->productMapper->saveImg($pid.$cont, $pid);
+                    //Subimos las fotos
+                    foreach ($_FILES['files'] as $f => $name) {
+                        $foto = $_FILES['files']['tmp_name'];
+                        $nombre = $_FILES['files']['name'];
+                        $extension = pathinfo($nombre, PATHINFO_EXTENSION);
+                        $newname = $_POST["name"] . "." . $extension;
+                        $destino = "resources/" . $newname;
+                        if(move_uploaded_file($foto, $destino)) {
+                            var_dump("s");
+                            die();
+                            $this->productMapper->saveImg($pid . $cont, $pid);
+                            $cont++;
+                        }
+                        if ($cont == 4) break;
+                    }
+
                     $this->view->setFlash("Product ".$product->getProductName()." successfully added. ");
                     $this->view->redirect("users", "profile");
 

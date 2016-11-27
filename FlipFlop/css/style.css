@@ -391,6 +391,39 @@ body{
     left: 0;
 }
 
+/*style @ products/add.php*/
+
+.add-button {
+    color: black;
+    border: 1px solid white;
+    background-color: #ff533d;
+    border-radius: 1px;
+    margin-top: 5px;
+    width: 20%;
+}
+
+.add-input {
+    display: inline-block;
+    background-color: white;
+    margin: 5px;
+    width: 70%;
+    border: 2px solid ghostwhite;
+    box-shadow: inset 0 0 3px 1px dimgrey;
+    border-radius: 5px;
+    height: 25px;
+}
+
+.add-desc{
+    display: inline-block;
+    background-color: white;
+    margin: 5px;
+    width: 70%;
+    border: 2px solid ghostwhite;
+    box-shadow: inset 0 0 3px 1px dimgrey;
+    border-radius: 5px;
+    height: 85px;
+}
+
 /* Small devices (tablets, 768px and up) */
 /* container width: 750 */
 @media (min-width: 768px) {

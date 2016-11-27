@@ -13,7 +13,7 @@ $view->setVariable("title", "View Product");
     </a>
     <div class="img-list">
         <div>
-            <img class="d-img light-border" src="../img/chancleta2.jpg">
+            <img class="d-img light-border" src="../FlipFlop/resources/91.jpg">
         </div>
         <div class="sub-img-box">
             <img class="sub-img light-border" src="../img/chancleta2.jpg">
