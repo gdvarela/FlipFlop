@@ -31,6 +31,7 @@ loadChat = function () {
 
     var $chatModal = $('.chat-modal');
     var $chatTabs = $('.chat-tab');
+    var $chatInput = $('.chat-input');
     var lastID = null;
 
     $chatTabs.each(function () {
@@ -51,7 +52,15 @@ loadChat = function () {
             }
             requestMessages(chatID);
         });
-    })
+    });
+
+    $chatInput.keypress(function (e) {
+        if (e.which == 13) {
+            if (lastID) {
+                sendMessage(lastID, $chatInput.val(), new Date().getTime())
+            }
+        }
+    });
 
     $('#close-chat').click(function () {
         $chatModal.hide();
@@ -87,8 +96,17 @@ requestMessages = function (chatID) {
                 }
             }
         );
-    }, 500);
+    }, 100);
 };
+
+sendMessage = function (chatID, msg, time) {
+    $.ajax({
+            url: 'index.php?controller=AJAX&action=send',
+            data: {idChat: chatID, msg: msg, time: time},
+            type: 'post',
+        }
+    );
+}
 
 window.onload = function () {
     load();

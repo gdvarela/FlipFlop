@@ -1,6 +1,8 @@
 <?php
 require_once(__DIR__."/../core/PDOConnection.php");
 require_once(__DIR__."/../model/Chat.php");
+require_once(__DIR__."/../model/Message.php");
+
 
 class ChatMapper {
 
@@ -31,5 +33,11 @@ class ChatMapper {
         $chatInfo = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return $chatInfo;
+    }
+
+    public function saveMsg($msg)
+    {
+        $stmt = $this->db->prepare("INSERT INTO Messages (message, idChat, owner, time) values(?,?,?,?)");
+        $stmt->execute(array($msg->getText(), $msg->getIdChat(), $msg->getOwner(), $msg->getTime()));
     }
 }

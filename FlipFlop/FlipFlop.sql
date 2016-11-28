@@ -60,7 +60,7 @@ CREATE TABLE `Images` (
   PRIMARY KEY (`idImage`),
   UNIQUE KEY `uri_UNIQUE` (`uri`),
   KEY `idProduct_idx` (`idProduct`),
-  CONSTRAINT `idProduct` FOREIGN KEY (`idProduct`) REFERENCES `Products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `idProduct` FOREIGN KEY (`idProduct`) REFERENCES `Products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -85,12 +85,12 @@ CREATE TABLE `Messages` (
   `idMessages` int(11) NOT NULL AUTO_INCREMENT,
   `message` text COLLATE latin1_spanish_ci NOT NULL,
   `idChat` int(11) NOT NULL,
-  `owner` bit(1) NOT NULL,
+  `owner` tinyint(1) NOT NULL,
   `time` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`idMessages`),
   KEY `idChat_idx` (`idChat`),
   CONSTRAINT `idChat` FOREIGN KEY (`idChat`) REFERENCES `Chats` (`idChats`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +99,7 @@ CREATE TABLE `Messages` (
 
 LOCK TABLES `Messages` WRITE;
 /*!40000 ALTER TABLE `Messages` DISABLE KEYS */;
-INSERT INTO `Messages` VALUES (2,'hi',1,'',1480073707500),(3,'hi',1,'\0',1480073707501),(4,'You Noob',1,'\0',1480073707502),(5,'Report',1,'',1480073707503),(6,'Hello sir',2,'',1480073707696),(7,'soapdijaosdija',2,'\0',1480073707697),(8,'Anyone there?',3,'\0',1480073707696),(9,'Io Bro Whats Up MOTH*****',4,'',1480073707696),(10,'hi',5,'',1480073707696),(11,'I want to buy your lugs',5,'',1480073707698),(12,'500 €',5,'\0',1480073707699),(13,'400 €',5,'',1480073707711),(14,'200 €',5,'\0',1480073707715),(15,'You idiot',5,'',1480073707800),(16,'OMG',1,'',1480073707504);
+INSERT INTO `Messages` VALUES (2,'hi',1,1,1480073707500),(3,'hi',1,0,1480073707501),(4,'You Noob',1,0,1480073707502),(5,'Report',1,1,1480073707503),(6,'Hello sir',2,1,1480073707696),(7,'soapdijaosdija',2,0,1480073707697),(8,'Anyone there?',3,0,1480073707696),(9,'Io Bro Whats Up MOTH*****',4,1,1480073707696),(10,'hi',5,1,1480073707696),(11,'I want to buy your lugs',5,1,1480073707698),(12,'500 €',5,0,1480073707699),(13,'400 €',5,1,1480073707711),(14,'200 €',5,0,1480073707715),(15,'You idiot',5,1,1480073707800),(16,'OMG',1,1,1480073707504),(21,'I sell Chancleta',1,0,1480073707505),(22,'what is Chancleta?',1,1,1480073707506),(23,'The Perfect Shoe!!!!!',1,0,1480073707507),(24,'I dont trust you',1,1,1480073707508),(25,'You called me NOOB',1,1,1480073707509),(26,'I was joking',1,0,1480073707510),(27,'And Drunk',1,0,1480073707511),(29,'test',1,1,1480358134015);
 /*!40000 ALTER TABLE `Messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,4 +174,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-25 13:35:27
+-- Dump completed on 2016-11-28 19:36:50

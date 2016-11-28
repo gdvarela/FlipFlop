@@ -17,8 +17,8 @@ $view = ViewManager::getInstance();
 <script src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <?php
-if($view->hasFlash()) {
-    echo "<div class=\"pops\"><span class=\"pop-text\">".$view->popFlash()."</span></div>";
+if ($view->hasFlash()) {
+    echo "<div class=\"pops\"><span class=\"pop-text\">" . $view->popFlash() . "</span></div>";
 }
 ?>
 <a href="index.php" class="logo"></a>
@@ -64,9 +64,7 @@ if($view->hasFlash()) {
         </div>
     </div>
     <div class="chat-modal-input">
-        <form>
-            <input class="chat-input" type="text" name="chatInput" placeholder="Enter your message">
-        </form>
+        <input class="chat-input" type="text" placeholder="Enter your message">
     </div>
 </div>
 </body>
