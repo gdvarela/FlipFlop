@@ -49,19 +49,27 @@ class ProductsController extends BaseController {
                     $pid = $this->productMapper->pid($_POST["name"]);
 
                     $cont = 1;
+//                    //Subimos las fotos
+//                    foreach($_FILES['files']['name'] as $f => $name) {
+//                        $foto = $_FILES['files']['tmp_name'];
+//                        $nombre = $_FILES['files']['name'];
+//                        $extension = pathinfo($nombre, PATHINFO_EXTENSION);
+//                        $newname = $pid . $cont . "." . $extension;
+//                        $destino = "resources/" . $newname;
+//                        move_uploaded_file($foto, $destino);
+//                        $this->productMapper->saveImg($pid . $cont, $pid);
+//                        $cont++;
+//                        if ($cont == 4) break;
+//                    }
+
                     //Subimos las fotos
-                    foreach ($_FILES['files'] as $f => $name) {
                         $foto = $_FILES['files']['tmp_name'];
                         $nombre = $_FILES['files']['name'];
                         $extension = pathinfo($nombre, PATHINFO_EXTENSION);
-                        $newname = $_POST["name"] . "." . $extension;
+                        $newname = $pid . $cont . "." . $extension;
                         $destino = "resources/" . $newname;
-                        if(move_uploaded_file($foto, $destino)) {
-                            $this->productMapper->saveImg($pid . $cont, $pid);
-                            $cont++;
-                        }
-                        if ($cont == 4) break;
-                    }
+                        move_uploaded_file($foto, $destino);
+                        $this->productMapper->saveImg($pid . $cont, $pid);
 
                     $this->view->setFlash("Product ".$product->getProductName()." successfully added. ");
                     $this->view->redirect("users", "profile");
@@ -141,7 +149,7 @@ class ProductsController extends BaseController {
 
             try {
                 // validate Post object
-                //$post->checkIsValidForUpdate(); // if it fails, ValidationException
+                $product->checkIsValidForUpdate(); // if it fails, ValidationException
 
                 // update the Post object in the database
                 $this->productMapper->update($product);

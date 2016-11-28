@@ -33,6 +33,6 @@ $view->setVariable("title", "View Product");
                     <div class="p-row2 rowtext"><?= i18n("Added").": ".htmlentities( $product->getAddDate() ) ?></div>
                 </div>
         </div>
+        <a href="?controller=products&action=edit&id=<?= $product->getId() ?>">Editar producto</a>
+    </div>
 </div>
-
-    <a href="?controller=products&action=edit&id=<?= $product->getId() ?>">Editar producto</a>

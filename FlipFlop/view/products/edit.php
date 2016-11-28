@@ -28,7 +28,7 @@ $view->setVariable("title", "Edit Product");
 
             <?= i18n("Price") ?>: <br>
             <input type="text" name="price" class="add-input"
-                   value="<?= isset($_POST["price"])?$_POST["price"]:$product->getPrice() ?>"></textarea>>
+                   value="<?= isset($_POST["price"])?$_POST["price"]:$product->getPrice() ?>">
             <?= isset($errors["price"])?$errors["price"]:"" ?><br>
 
             <?= i18n("Tags") ?>: <br>

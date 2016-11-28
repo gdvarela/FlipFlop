@@ -14,6 +14,7 @@
     "Product \"%s\" successfully added." => "Producto \"%s\" añadido.",
     "Product \"%s\" successfully updated." => "Producto \"%s\" modificado.",
     "Product \"%s\" successfully deleted." => "Producto \"%s\" eliminado.",
+    "Product \"%s\" is not yours" => "No puedes modificar \"%s\" , este producto no es tuyo",
     "Send" => "Enviar",
     "Post" => "Artículo",
     "Back" => "Atrás",

@@ -168,5 +168,21 @@ class Product {
         }
     }
 
+    public function checkIsValidForUpdate() {
+        $errors = array();
+        if (strlen($this->description) < 10) {
+            $errors["product"] = "Product description must be at least 10 characters length";
+        }
+        if ( $this->price == 0 ) {
+            $errors["product"] = "Price can't be 0";
+        }
+        if (strlen($this->tags) < 1) {
+            $errors["product"] = "Product tags must be at least 10 characters length";
+        }
+        if (sizeof($errors) > 0) {
+            throw new ValidationException($errors, "post is not valid");
+        }
+    }
+
 
 }
