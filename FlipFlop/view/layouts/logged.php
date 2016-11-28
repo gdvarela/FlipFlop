@@ -45,6 +45,9 @@ if($view->hasFlash()) {
                 <i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i>
             </a>
         </div>
+        <div class="chat-tab" data-id="5">
+            <span class="text chat-tab-text">Chat 5</span>
+        </div>
         <div class="chat-tab" data-id="1">
             <span class="text chat-tab-text">Chat 1</span>
         </div>
@@ -57,7 +60,7 @@ if($view->hasFlash()) {
             <span class="chat-modal-tittle-name"></span>
             <i id="close-chat" class="close-icon fa fa-times fa-fw" aria-hidden="true"></i>
         </div>
-        <div class="msg-content">
+        <div class="chat-modal-msg-content">
         </div>
     </div>
     <div class="chat-modal-input">

@@ -52,7 +52,16 @@
     margin: 1%;
     padding: 1%;
     background-color: #729992;
-    border-radius: 25px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.chat-modal-msg-content {
+    max-height: 90%;
+    margin: 0.5% 0;
+    overflow-y: scroll;
 }
 
 .chat-modal-input {
