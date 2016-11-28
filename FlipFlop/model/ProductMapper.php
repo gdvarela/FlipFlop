@@ -11,10 +11,15 @@ class ProductMapper {
     }
 
 
-    public function save($product){
+    public function save(Product $product){
         $stmt = $this->db->prepare("INSERT INTO Products (product_name, description, price, tags, add_date, seller) values (?,?,?,?,?,?)");
         $stmt->execute(array($product->getProductName(), $product->getDescription(),
             $product->getPrice(), $product->getTags(), $product->getAddDate(), $product->getSeller()));
+    }
+
+    public function update(Product $product){
+        $stmt = $this->db->prepare("UPDATE Products SET description=?, price=?, tags=? WHERE id=?");
+        $stmt->execute(array($product->getDescription(), $product->getPrice(), $product->getTags(), $product->getId()));
     }
 
 
@@ -66,4 +71,12 @@ class ProductMapper {
 
         return $stmt->fetchColumn(0);
     }
+
+    public function getSeller($id) {
+        $stmt = $this->db->prepare("SELECT login FROM Users u,Products p where u.id=p.seller AND p.id=?");
+        $stmt->execute(array($id));
+
+        return $stmt->fetchColumn(0);
+    }
+
 }

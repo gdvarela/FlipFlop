@@ -18,3 +18,4 @@ $view->setVariable("date", $date);
 <a>Modificar datos</a>
 
 
+

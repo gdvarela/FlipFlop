@@ -34,3 +34,5 @@ $view->setVariable("title", "View Product");
                 </div>
         </div>
 </div>
+
+    <a href="?controller=products&action=edit&id=<?= $product->getId() ?>">Editar producto</a>

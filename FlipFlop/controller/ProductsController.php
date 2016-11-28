@@ -57,8 +57,6 @@ class ProductsController extends BaseController {
                         $newname = $_POST["name"] . "." . $extension;
                         $destino = "resources/" . $newname;
                         if(move_uploaded_file($foto, $destino)) {
-                            var_dump("s");
-                            die();
                             $this->productMapper->saveImg($pid . $cont, $pid);
                             $cont++;
                         }
@@ -108,6 +106,65 @@ class ProductsController extends BaseController {
         // render the view (/view/products/view.php)
         $this->view->render("products", "view");
 
+    }
+
+    public function edit() {
+        if (!isset($_REQUEST["id"])) {
+            throw new Exception("A product id is mandatory");
+        }
+
+        if (!isset($this->currentUser)) {
+            throw new Exception("Not in session. Editing posts requires login");
+        }
+
+
+        // Get the Post object from the database
+        $id = $_REQUEST["id"];
+        $product = $this->productMapper->view($id);
+
+        // Does the post exist?
+        if ($product == NULL) {
+            throw new Exception("no such product with id: ".$id);
+        }
+
+        // Check if the Post author is the currentUser (in Session)
+        if ($product->getSeller() != $_SESSION["currentuser"]) {
+            throw new Exception("logged user is not related with the product id ".$id);
+        }
+
+        if (isset($_POST["submit"])) { // reaching via HTTP Product...
+
+            // populate the Product object with data form the form
+            $product->setDescription($_POST["description"]);
+            $product->setPrice($_POST["price"]);
+            $product->setTags($_POST["tags"]);
+
+            try {
+                // validate Post object
+                //$post->checkIsValidForUpdate(); // if it fails, ValidationException
+
+                // update the Post object in the database
+                $this->productMapper->update($product);
+                $this->view->setFlash(sprintf(i18n("Product \"%s\" successfully updated."),$product->getProductName()));
+
+                // perform the redirection. More or less:
+                // header("Location: index.php?controller=posts&action=index")
+                // die();
+                $this->view->redirect("users", "profile");
+
+            }catch(ValidationException $ex) {
+                // Get the errors array inside the exepction...
+                $errors = $ex->getErrors();
+                // And put it to the view as "errors" variable
+                $this->view->setVariable("errors", $errors);
+            }
+        }
+
+        // Put the Post object visible to the view
+        $this->view->setVariable("product", $product);
+
+        // render the view (/view/products/add.php)
+        $this->view->render("products", "edit");
     }
 
 }
