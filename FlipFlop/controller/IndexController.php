@@ -72,6 +72,7 @@ class IndexController extends BaseController
                     $this->view->setLayout("logged");
                     $_SESSION["currentuser"] = $userLogin[0]["id"];
                     $_SESSION["currentusername"] = $userLogin[0]["name"];
+                    $_SESSION["currentuserchats"] = $this->chatMapper->getUserChats($_SESSION["currentuser"]);
                 } else {
 
                     $errors["userLogin"] = $_POST["userLogin"];
