@@ -32,6 +32,8 @@ loadChat = function () {
     var $chatModal = $('.chat-modal');
     var $chatTabs = $('.chat-tab');
     var $chatInput = $('.chat-input');
+    var $chatContent = $(".chat-modal-msg-content")
+
     var lastID = null;
 
     $chatTabs.each(function () {
@@ -59,6 +61,8 @@ loadChat = function () {
             if (lastID) {
                 sendMessage(lastID, $chatInput.val(), new Date().getTime())
             }
+            $chatInput.val("");
+            $chatContent.animate({ scrollTop: $chatContent.prop("scrollHeight")}, 250);
         }
     });
 
@@ -76,12 +80,12 @@ requestMessages = function (chatID) {
     $('.chat-modal-msg-content').empty();
 
     setInterval(function () {
+        console.log("Ajax", chatID);
         $.ajax({
                 url: 'index.php?controller=AJAX&action=messages',
                 data: {idChat: chatID, last: lastMsg},
                 type: 'post',
                 success: function (Result) {
-                    console.log("Result", Result);
                     var chat = $.parseJSON(Result);
                     var chatInfo = chat[0];
                     if (chat[1].length > 0) {
