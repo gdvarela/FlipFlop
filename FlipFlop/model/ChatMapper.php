@@ -40,4 +40,16 @@ class ChatMapper {
         $stmt = $this->db->prepare("INSERT INTO Messages (message, idChat, owner, time) values(?,?,?,?)");
         $stmt->execute(array($msg->getText(), $msg->getIdChat(), $msg->getOwner(), $msg->getTime()));
     }
+
+    public function checkOwner($usr, $chatId)
+    {
+        $stmt = $this->db->prepare("SELECT idChats FROM Chats where Chats.idChats = ? and ? not in (Select idInterested from Chats where idChats = ?);");
+        $stmt->execute(array($chatId, $usr, $chatId));
+
+        if ($stmt->fetchColumn() > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 }

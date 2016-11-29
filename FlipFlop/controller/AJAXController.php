@@ -37,9 +37,10 @@ class AJAXController extends BaseController
         echo json_encode($chat);
     }
 
-    public function send() {
-
-        $msg = new Message($_POST["msg"], $_POST["idChat"], 1, $_POST["time"]);
+    public function send()
+    {
+        $owner = $this->chatMapper->checkOwner($_SESSION["currentuser"], $_POST["idChat"]);
+        $msg = new Message($_POST["msg"], $_POST["idChat"], $owner, $_POST["time"]);
         $this->chatMapper->saveMsg($msg);
     }
 }
