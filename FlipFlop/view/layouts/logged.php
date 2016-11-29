@@ -21,6 +21,7 @@ if ($view->hasFlash()) {
     echo "<div class=\"pops\"><span class=\"pop-text\">" . $view->popFlash() . "</span></div>";
 }
 ?>
+<data id="currentuser" value="<?= $_SESSION["currentuser"] ?>"></data>
 <a href="index.php" class="logo"></a>
 <a href="index.php" class="title text">Flip - Flop</a>
 <div class="login">

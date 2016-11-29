@@ -41,18 +41,6 @@ class ChatMapper {
         $stmt->execute(array($msg->getText(), $msg->getIdChat(), $msg->getOwner(), $msg->getTime()));
     }
 
-    public function checkOwner($usr, $chatId)
-    {
-        $stmt = $this->db->prepare("SELECT idChat FROM Chats where Chats.idChats = ? and ? not in (Select idInterested from Chats where idChat = ?);");
-        $stmt->execute(array($chatId, $usr, $chatId));
-
-        if ($stmt->fetchColumn() > 0) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
     public function getUserChats($usr)
     {
         $stmt = $this->db->prepare("SELECT idChat, product_name FROM Chats, Products WHERE Products.id = Chats.idProduct and (idInterested = ? or seller = ?);");

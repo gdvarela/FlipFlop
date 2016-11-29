@@ -70,6 +70,9 @@ loadChat = function () {
 requestMessages = function (chatID) {
 
     var lastMsg = "new";
+    var user = $('#currentuser').attr("value");
+    console.log("user", user);
+
     $('.chat-modal-msg-content').empty();
 
     setInterval(function () {
@@ -78,6 +81,7 @@ requestMessages = function (chatID) {
                 data: {idChat: chatID, last: lastMsg},
                 type: 'post',
                 success: function (Result) {
+                    console.log("Result", Result);
                     var chat = $.parseJSON(Result);
                     var chatInfo = chat[0];
                     if (chat[1].length > 0) {
@@ -86,7 +90,7 @@ requestMessages = function (chatID) {
 
                         $('.chat-modal-tittle-name').text(chatInfo[0].product_name + ": " + chatInfo[0].name);
                         chat.forEach(function (msg) {
-                            if (msg.owner == 1) {
+                            if (msg.owner == user) {
                                 $('.chat-modal-msg-content').append("<div class='chat-self'><span>Yo:</span><span>" + msg.message + "</span></div>")
                             } else {
                                 $('.chat-modal-msg-content').append("<div class='chat-their'><span>" + msg.message + "</span></div>")
@@ -103,7 +107,7 @@ sendMessage = function (chatID, msg, time) {
     $.ajax({
             url: 'index.php?controller=AJAX&action=send',
             data: {idChat: chatID, msg: msg, time: time},
-            type: 'post',
+            type: 'post'
         }
     );
 }
