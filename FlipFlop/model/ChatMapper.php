@@ -28,7 +28,7 @@ class ChatMapper {
 
     public function getChatInfo($chatId)
     {
-        $stmt = $this->db->prepare("select product_name, Users.name from Chats, Products, Users where Chats.idProduct = Products.id and Chats.idInterested = Users.id and Chats.idChats = ?");
+        $stmt = $this->db->prepare("select product_name, Users.name from Chats, Products, Users where Chats.idProduct = Products.id and Chats.idInterested = Users.id and Chats.idChat = ?");
         $stmt->execute(array($chatId));
         $chatInfo = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -43,7 +43,7 @@ class ChatMapper {
 
     public function checkOwner($usr, $chatId)
     {
-        $stmt = $this->db->prepare("SELECT idChats FROM Chats where Chats.idChats = ? and ? not in (Select idInterested from Chats where idChats = ?);");
+        $stmt = $this->db->prepare("SELECT idChat FROM Chats where Chats.idChats = ? and ? not in (Select idInterested from Chats where idChat = ?);");
         $stmt->execute(array($chatId, $usr, $chatId));
 
         if ($stmt->fetchColumn() > 0) {
@@ -51,5 +51,14 @@ class ChatMapper {
         } else {
             return 0;
         }
+    }
+
+    public function getUserChats($usr)
+    {
+        $stmt = $this->db->prepare("SELECT idChat, product_name FROM Chats, Products WHERE Products.id = Chats.idProduct and (idInterested = ? or seller = ?);");
+        $stmt->execute(array($usr, $usr));
+        $chats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $chats;
     }
 }

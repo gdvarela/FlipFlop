@@ -5,6 +5,7 @@ require_once(__DIR__ . "/../core/ViewManager.php");
 require_once(__DIR__ . "/../core/I18n.php");
 
 require_once(__DIR__ . "/../model/User.php");
+require_once(__DIR__ . "/../model/ChatMapper.php");
 
 /**
  * Class BaseController
@@ -30,12 +31,14 @@ class BaseController
      * @var User
      */
     protected $currentUser;
+    public $chatMapper;
     public $user;
 
     public function __construct()
     {
 
         $this->view = ViewManager::getInstance();
+        $this->chatMapper = new ChatMapper();
 
         // get the current user and put it to the view
         if (session_status() == PHP_SESSION_NONE) {
@@ -52,6 +55,8 @@ class BaseController
         if (isset($_SESSION["currentuser"])) {
             $this->currentUser = new User($_SESSION["currentuser"]);
             $this->view->setVariable("currentusername", $this->currentUser->getLogin());
+
+            $_SESSION["currentuserchats"] = $this->chatMapper->getUserChats($_SESSION["currentuser"]);
 
             $this->view->setLayout("logged");
         }

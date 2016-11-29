@@ -101,6 +101,7 @@ footer {
 .chat-tab-text {
     display: table-cell;
     vertical-align: middle;
+    padding: 0 5px;
 }
 
 .close-icon {

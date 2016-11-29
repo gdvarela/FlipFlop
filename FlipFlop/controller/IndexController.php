@@ -25,7 +25,6 @@ class IndexController extends BaseController
 
         $this->userMapper = new UserMapper();
         $this->productMapper = new ProductMapper();
-
     }
 
     public function welcome()
@@ -33,6 +32,7 @@ class IndexController extends BaseController
 
         $errors = array();
 
+        /*--------- From Register ---------------------------------------------*/
         if (isset($_POST["login"])) {
 
             $this->user->setName($_POST["name"]);
@@ -60,6 +60,9 @@ class IndexController extends BaseController
                 $errors["loadRegister"] = "loadRegister";
             }
         }
+        /*--------- ---------------- ---------------------------------------------*/
+
+        /*--------- From Login ---------------------------------------------*/
         if (isset($_POST["userLogin"])) {
 
             if ($this->userMapper->isValidUser($_POST["userLogin"])) {
@@ -78,6 +81,7 @@ class IndexController extends BaseController
                 $this->view->setFlash("User is not valid");
             }
         }
+        /*--------- ---------------------------------------------*/
 
         if (!isset($_SESSION["currentusername"])) {
             $this->view->setLayout("header");
