@@ -12,14 +12,18 @@ class ChatMapper {
         $this->db = PDOConnection::getInstance();
     }
 
-    public function getMessages($chatId, $lastTime)
+    public function getMessages($chatId, $first)
     {
-        if($lastTime=="new") {
+        $stmt = $this->db->prepare("select lastMessage from Chats where idChat = ?");
+        $stmt->execute(array($chatId));
+        $last = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($last["lastMessage"]==0 or $first==1) {
             $stmt = $this->db->prepare("SELECT * FROM Messages WHERE idChat=? order by time asc");
             $stmt->execute(array($chatId));
         } else {
             $stmt = $this->db->prepare("SELECT * FROM Messages WHERE idChat=? and time > ? order by time asc");
-            $stmt->execute(array($chatId, $lastTime));
+            $stmt->execute(array($chatId, $last["lastMessage"]));
         }
         $chat = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -39,6 +43,10 @@ class ChatMapper {
     {
         $stmt = $this->db->prepare("INSERT INTO Messages (message, idChat, owner, time) values(?,?,?,?)");
         $stmt->execute(array($msg->getText(), $msg->getIdChat(), $msg->getOwner(), $msg->getTime()));
+
+        $stmt = $this->db->prepare("UPDATE Chats SET lastMessage = ? WHERE idChat = ?");
+        $stmt->execute(array($msg->getTime(), $msg->getIdChat()));
+
     }
 
     public function getUserChats($usr)
