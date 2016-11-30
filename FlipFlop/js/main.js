@@ -32,10 +32,66 @@ loadChat = function () {
                         chat = chat[1];
                         chatsIntervals[chatID]["messages"] = chat;
                     }
+                    notFocusInterval(chatID);
+                    console.log("First");
                 }
             }
         );
 
+        $(this).click(function () {
+
+            if ($chatModal.css('display') == 'none') {
+                lastID = chatID;
+                loadMessages();
+                $('#chat-tab-' + lastID).addClass("new-messages");
+                $chatModal.show();
+                onFocusInterval(chatID);
+            } else {
+                if (chatID == lastID) {
+                    $('#chat-tab-' + lastID).removeClass("new-messages");
+                    $chatModal.hide();
+                    notFocusInterval(chatID);
+                } else {
+                    notFocusInterval(lastID);
+                    $('#chat-tab-' + lastID).removeClass("new-messages");
+                    lastID = chatID;
+                    $('#chat-tab-' + lastID).addClass("new-messages");
+                    onFocusInterval(chatID);
+                    loadMessages();
+                }
+            }
+        });
+    });
+
+    notFocusInterval = function (chatID) {
+        if ( "intervalId" in chatsIntervals[chatID]) {
+            clearInterval(chatsIntervals[chatID]["intervalId"]);
+        }
+        chatsIntervals[chatID]["intervalId"] = setInterval(function () {
+            $.ajax({
+                    url: 'index.php?controller=AJAX&action=messages',
+                    data: {idChat: chatID, last: chatsIntervals[chatID]["title"][0]["lastMessage"]},
+                    type: 'post',
+                    success: function (Result) {
+                        var chat = $.parseJSON(Result);
+                        var chatInfo = chat[0];
+                        chatsIntervals[chatID]["title"] = chatInfo;
+                        if (chat[1].length > 0) {
+                            $('#chat-tab-' + chatID).addClass("new-messages");
+                            chat = chat[1];
+                            chat.forEach(function (message) {
+                                chatsIntervals[chatID]["messages"].push(message);
+                            });
+                        }
+                        console.log("NotFocus", chatID);
+                    }
+                }
+            );
+        }, 5000);
+    };
+
+    onFocusInterval = function (chatID) {
+        clearInterval(chatsIntervals[chatID]["intervalId"]);
         chatsIntervals[chatID]["intervalId"] = setInterval(function () {
             $.ajax({
                     url: 'index.php?controller=AJAX&action=messages',
@@ -47,76 +103,11 @@ loadChat = function () {
                         chatsIntervals[chatID]["title"] = chatInfo;
                         if (chat[1].length > 0) {
                             chat = chat[1];
-                            chat.forEach(function (x) {
-                                chatsIntervals[chatID]["messages"].push(x);
-                            });
-                        }
-                    }
-                }
-            );
-        }, 5000);
-
-        $(this).click(function () {
-
-            if ($chatModal.css('display') == 'none') {
-                lastID = chatID;
-                loadMessages();
-                $chatModal.show();
-                onFocusInterval();
-            } else {
-                if (chatID == lastID) {
-                    $chatModal.hide();
-                    notFocusInterval();
-                } else {
-                    notFocusInterval();
-                    lastID = chatID;
-                    onFocusInterval();
-                    loadMessages();
-                }
-            }
-        });
-    });
-
-    notFocusInterval = function () {
-        clearInterval(chatsIntervals[lastID]["intervalId"]);
-        chatsIntervals[lastID]["intervalId"] = setInterval(function () {
-            $.ajax({
-                    url: 'index.php?controller=AJAX&action=messages',
-                    data: {idChat: lastID, last: chatsIntervals[lastID]["title"][0]["lastMessage"]},
-                    type: 'post',
-                    success: function (Result) {
-                        var chat = $.parseJSON(Result);
-                        var chatInfo = chat[0];
-                        chatsIntervals[lastID]["title"] = chatInfo;
-                        if (chat[1].length > 0) {
-                            chat = chat[1];
-                            chat.forEach(function (message) {
-                                chatsIntervals[lastID]["messages"].push(message);
-                            });
-                        }
-                    }
-                }
-            );
-        }, 5000);
-    };
-
-    onFocusInterval = function () {
-        clearInterval(chatsIntervals[lastID]["intervalId"]);
-        chatsIntervals[lastID]["intervalId"] = setInterval(function () {
-            $.ajax({
-                    url: 'index.php?controller=AJAX&action=messages',
-                    data: {idChat: lastID, last: chatsIntervals[lastID]["title"][0]["lastMessage"]},
-                    type: 'post',
-                    success: function (Result) {
-                        var chat = $.parseJSON(Result);
-                        var chatInfo = chat[0];
-                        chatsIntervals[lastID]["title"] = chatInfo;
-                        if (chat[1].length > 0) {
-                            chat = chat[1];
                             chat.forEach(function (message) {
                                 loadLastMessages(message);
                             });
                         }
+                        console.log("Focus", chatID);
                     }
                 }
             );

@@ -47,7 +47,7 @@ if ($view->hasFlash()) {
             </a>
         </div>
         <?php foreach($_SESSION["currentuserchats"] as $chat): ?>
-        <div class="chat-tab" data-id="<?= $chat["idChat"]?>">
+        <div class="chat-tab" id="chat-tab-<?= $chat["idChat"]?>" data-id="<?= $chat["idChat"]?>">
             <span class="text chat-tab-text"><?= $chat["product_name"]?></span>
         </div>
         <?php endforeach; ?>
