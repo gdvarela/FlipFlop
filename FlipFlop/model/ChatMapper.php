@@ -35,7 +35,7 @@ class ChatMapper {
 
     public function getChatInfo($chatId)
     {
-        $stmt = $this->db->prepare("select product_name, Users.name, Chats.lastMessage from Chats, Products, Users where Chats.idProduct = Products.id and Chats.idInterested = Users.id and Chats.idChat = ?");
+        $stmt = $this->db->prepare("select product_name, Users.name, Chats.lastMessage from Chats, Products, Users where Chats.idProduct = Products.id and Products.seller = Users.id and Chats.idChat = ?");
         $stmt->execute(array($chatId));
         $chatInfo = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
