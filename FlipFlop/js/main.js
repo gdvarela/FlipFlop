@@ -94,7 +94,6 @@ loadChat = function () {
                                 chatsIntervals[lastID]["messages"].push(message);
                             });
                         }
-                        loadMessages();
                     }
                 }
             );
@@ -121,7 +120,7 @@ loadChat = function () {
                     }
                 }
             );
-        }, 300);
+        }, 500);
     };
 
     clearMessages = function () {
