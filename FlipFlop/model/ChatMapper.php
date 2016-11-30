@@ -12,27 +12,30 @@ class ChatMapper {
         $this->db = PDOConnection::getInstance();
     }
 
-    public function getMessages($chatId, $first)
+    public function getMessages($chatId, $last)
     {
-        $stmt = $this->db->prepare("select lastMessage from Chats where idChat = ?");
-        $stmt->execute(array($chatId));
-        $last = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if($last["lastMessage"]==0 or $first==1) {
-            $stmt = $this->db->prepare("SELECT * FROM Messages WHERE idChat=? order by time asc");
+        if($last == 0) {
+            $stmt = $this->db->prepare("SELECT * FROM Messages WHERE idChat=? order by idMessage asc");
             $stmt->execute(array($chatId));
+            $list_bd = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } else {
-            $stmt = $this->db->prepare("SELECT * FROM Messages WHERE idChat=? and time > ? order by time asc");
-            $stmt->execute(array($chatId, $last["lastMessage"]));
+            $stmt = $this->db->prepare("SELECT * FROM Messages WHERE idChat=? and idMessage > ? order by idMessage asc");
+            $stmt->execute(array($chatId, $last));
+            $list_bd = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-        $chat = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        return $chat;
+        $messages = array();
+
+        foreach ($list_bd as $message) {
+            array_push($messages, new Message($message["idChat"], $message["idMessage"], $message["message"], $message["owner"], $message["time"]));
+        }
+
+        return $messages;
     }
 
     public function getChatInfo($chatId)
     {
-        $stmt = $this->db->prepare("select product_name, Users.name from Chats, Products, Users where Chats.idProduct = Products.id and Chats.idInterested = Users.id and Chats.idChat = ?");
+        $stmt = $this->db->prepare("select product_name, Users.name, Chats.lastMessage from Chats, Products, Users where Chats.idProduct = Products.id and Chats.idInterested = Users.id and Chats.idChat = ?");
         $stmt->execute(array($chatId));
         $chatInfo = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -44,9 +47,8 @@ class ChatMapper {
         $stmt = $this->db->prepare("INSERT INTO Messages (message, idChat, owner, time) values(?,?,?,?)");
         $stmt->execute(array($msg->getText(), $msg->getIdChat(), $msg->getOwner(), $msg->getTime()));
 
-        $stmt = $this->db->prepare("UPDATE Chats SET lastMessage = ? WHERE idChat = ?");
-        $stmt->execute(array($msg->getTime(), $msg->getIdChat()));
-
+        $stmt = $this->db->prepare("UPDATE Chats SET lastMessage = (select MAX(idMessage) from messages where idChat = ?) WHERE idChat = ?");
+        $stmt->execute(array($msg->getIdChat(), $msg->getIdChat()));
     }
 
     public function getUserChats($usr)

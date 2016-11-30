@@ -15,7 +15,7 @@ $view = ViewManager::getInstance();
 </head>
 <body>
 <script src="js/jquery-3.1.1.min.js"></script>
-<script type="text/javascript" src="js/test.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 <?php
 if ($view->hasFlash()) {
     echo "<div class=\"pops\"><span class=\"pop-text\">" . $view->popFlash() . "</span></div>";

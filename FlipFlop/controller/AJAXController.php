@@ -18,24 +18,18 @@ class AJAXController extends BaseController
         parent::__construct();
     }
 
-    public function chats()
-    {
-        $chats = $this->chatMapper->getChats($_POST['idUsr']);
-
-    }
-
     public function messages()
     {
         $chat = array();
         array_push($chat, $this->chatMapper->getChatInfo($_POST['idChat']));
-        array_push($chat, $this->chatMapper->getMessages($_POST['idChat'], $_POST['first']));
+        array_push($chat, $this->chatMapper->getMessages($_POST['idChat'], $_POST['last']));
 
         echo json_encode($chat);
     }
 
     public function send()
     {
-        $msg = new Message($_POST["msg"], $_POST["idChat"], $_SESSION["currentuser"], $_POST["time"]);
+        $msg = new Message($_POST["idChat"], null, $_POST["msg"], $_SESSION["currentuser"], $_POST["time"]);
         $this->chatMapper->saveMsg($msg);
     }
 }
