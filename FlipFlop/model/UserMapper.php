@@ -34,9 +34,13 @@ class UserMapper
         $stmt->execute(array($user->getPass(), $user->getName(), $user->getLastname(), $user->getEmail(), $user->getPhone(), $user->getDNI()));
     }
 
-    public function view($user)
+    public function getUser($id)
     {
-        $stmt = $this->db->query("SELECT * FROM Users WHERE login= $user->getLogin()");
+        $stmt = $this->db->prepare("SELECT * FROM Users WHERE id = ?");
+        $stmt->execute(array($id));
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return new User($user["id"], $user["login"], null, $user["name"], $user["last_name"], $user["email"], $user["phone"], $user["DNI"]);
     }
 
     public function delete($user)
@@ -94,13 +98,6 @@ class UserMapper
         } else {
             return false;
         }
-    }
-
-    public function date(){
-        $stmt = $this->db->prepare("SELECT CURDATE() ");
-        $stmt->fetch(PDO::FETCH_ASSOC);
-        $stmt->fetchColumn(0);
-        return (String)$stmt;
     }
 
     public function userproducts($id){
