@@ -25,10 +25,11 @@ DROP TABLE IF EXISTS `Chats`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Chats` (
-  `idChats` int(11) NOT NULL AUTO_INCREMENT,
+  `idChat` int(11) NOT NULL AUTO_INCREMENT,
   `idProduct` int(11) DEFAULT NULL,
   `idInterested` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idChats`),
+  `lastMessage` int(11) DEFAULT '0',
+  PRIMARY KEY (`idChat`),
   KEY `idProducto_chats_idx` (`idProduct`),
   KEY `idInterested_idx` (`idInterested`),
   CONSTRAINT `idInterested` FOREIGN KEY (`idInterested`) REFERENCES `Users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -42,7 +43,7 @@ CREATE TABLE `Chats` (
 
 LOCK TABLES `Chats` WRITE;
 /*!40000 ALTER TABLE `Chats` DISABLE KEYS */;
-INSERT INTO `Chats` VALUES (1,1,3),(2,3,3),(3,10,3),(4,10,2),(5,11,2);
+INSERT INTO `Chats` VALUES (3,9,2,0),(4,9,2,0);
 /*!40000 ALTER TABLE `Chats` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,7 +61,7 @@ CREATE TABLE `Images` (
   PRIMARY KEY (`idImage`),
   UNIQUE KEY `uri_UNIQUE` (`uri`),
   KEY `idProduct_idx` (`idProduct`),
-  CONSTRAINT `idProduct` FOREIGN KEY (`idProduct`) REFERENCES `Products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `idProduct` FOREIGN KEY (`idProduct`) REFERENCES `Products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -82,15 +83,17 @@ DROP TABLE IF EXISTS `Messages`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Messages` (
-  `idMessages` int(11) NOT NULL AUTO_INCREMENT,
-  `message` text COLLATE latin1_spanish_ci NOT NULL,
   `idChat` int(11) NOT NULL,
-  `owner` bit(1) NOT NULL,
+  `idMessage` int(11) NOT NULL,
+  `message` text COLLATE latin1_spanish_ci NOT NULL,
+  `owner` int(11) NOT NULL,
   `time` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`idMessages`),
+  PRIMARY KEY (`idMessage`,`idChat`),
   KEY `idChat_idx` (`idChat`),
-  CONSTRAINT `idChat` FOREIGN KEY (`idChat`) REFERENCES `Chats` (`idChats`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+  KEY `idUsuario_idx` (`owner`),
+  CONSTRAINT `idChat` FOREIGN KEY (`idChat`) REFERENCES `Chats` (`idChat`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `idUsuario` FOREIGN KEY (`owner`) REFERENCES `Users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +102,6 @@ CREATE TABLE `Messages` (
 
 LOCK TABLES `Messages` WRITE;
 /*!40000 ALTER TABLE `Messages` DISABLE KEYS */;
-INSERT INTO `Messages` VALUES (2,'hi',1,'',1480073707500),(3,'hi',1,'\0',1480073707501),(4,'You Noob',1,'\0',1480073707502),(5,'Report',1,'',1480073707503),(6,'Hello sir',2,'',1480073707696),(7,'soapdijaosdija',2,'\0',1480073707697),(8,'Anyone there?',3,'\0',1480073707696),(9,'Io Bro Whats Up MOTH*****',4,'',1480073707696),(10,'hi',5,'',1480073707696),(11,'I want to buy your lugs',5,'',1480073707698),(12,'500 €',5,'\0',1480073707699),(13,'400 €',5,'',1480073707711),(14,'200 €',5,'\0',1480073707715),(15,'You idiot',5,'',1480073707800),(16,'OMG',1,'',1480073707504);
 /*!40000 ALTER TABLE `Messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,7 +132,7 @@ CREATE TABLE `Products` (
 
 LOCK TABLES `Products` WRITE;
 /*!40000 ALTER TABLE `Products` DISABLE KEYS */;
-INSERT INTO `Products` VALUES (1,'Chancleta ','Super Awesome Chancleta',100,'#chancleta #Youtuber #420 #Summer','2016-11-22',1),(2,'Alpargata','Alpargata for Winter that is comming',50,'#Alpargata #Winter #Jhon','2016-10-22',3),(3,'Tenis','Hipster runner Mike Guachoski',160,'#LifeStyle','2016-09-22',1),(4,'Bambas','Bambas Panchitas',10,'#SportDesigned','2016-08-22',2),(5,'Zapatillas','Clasical home zapatillas',2,'#Chinese #NoChinese #MadeInTaiwan','2015-11-22',4),(6,'Botas','Typical katiuskas  for the lluvia',50,'#Rain #Men','2016-07-22',2),(7,'Tabi Ninja','Armored Shoes for Ad enemies',300,'#RitoPls #NerfRengar','2015-09-22',1),(8,'Hello kitty Mocasines','Mocasines only for adults',20,'#MocasinesSaltarines #BurnsRules','2016-10-22',3),(9,'Tenis','Messi Football tenis',600,'#NotFake #100%Real','2015-07-22',3),(10,'Tacones','Big Mexican vegetal tacos ',5,'#Burrito #MuerteaTrump','2016-07-22',4),(11,'Boots','Bern Grills ultimate survival boots, knife incorpored, free insects for Lee',225,'#UltimateSurvival #Blind','2016-10-22',4);
+INSERT INTO `Products` VALUES (1,'Chancleta ','Super Awesome Chancleta',100,'#chancleta #Youtuber #420 #Summer','2016-11-22',1),(2,'Alpargata','Alpargata for Winter that is comming',50,'#Alpargata #Winter #Jhon','2016-10-22',3),(3,'Tenis','Hipster runner Mike Guachoski',160,'#LifeStyle','2016-09-22',1),(4,'Bambas','Bambas Panchitas',10,'#SportDesigned','2016-08-22',2),(5,'Zapatillas','Clasical home zapatillas',2,'#Chinese #NoChinese #MadeInTaiwan','2015-11-22',4),(6,'Botas','Typical katiuskas  for the lluvia',50,'#Rain #Men','2016-07-22',2),(7,'Tabi Ninja','Armored Shoes for Ad enemies',300,'#RitoPls #NerfRengar','2015-09-22',1),(8,'Hello kitty Mocasines','Mocasines only for adults',20,'#MocasinesSaltarines #BurnsRules','2016-10-22',3),(9,'Tenis','Messi Football tenis',600,'#NotFake #100%Real','2015-07-22',3),(10,'Tacones','Big Mexican vegetal tacos ',5,'#Burrito #MuerteaTrump','2016-07-22',2),(11,'Boots','Bern Grills ultimate survival boots, knife incorpored, free insects for Lee',225,'#UltimateSurvival #Blind','2016-10-22',4);
 /*!40000 ALTER TABLE `Products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,4 +176,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-25 13:35:27
+-- Dump completed on 2016-11-30 13:28:30

@@ -17,10 +17,11 @@ $view = ViewManager::getInstance();
 <script src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <?php
-if($view->hasFlash()) {
-    echo "<div class=\"pops\"><span class=\"pop-text\">".$view->popFlash()."</span></div>";
+if ($view->hasFlash()) {
+    echo "<div class=\"pops\"><span class=\"pop-text\">" . $view->popFlash() . "</span></div>";
 }
 ?>
+<data id="currentuser" value="<?= $_SESSION["currentuser"] ?>"></data>
 <a href="index.php" class="logo"></a>
 <a href="index.php" class="title text">Flip - Flop</a>
 <div class="login">
@@ -30,10 +31,10 @@ if($view->hasFlash()) {
             <span class="profile-name"><?= $_SESSION["currentusername"] ?></span>
         </div>
         <form class="profile-form" action="?controller=users&action=logout" method="POST">
-            <button class="l_button" type="submit">Logout</button>
+            <button class="l_button" type="submit"><?= i18n("Logout")?></button>
         </form>
         <form class="profile-form" action="?controller=users&action=profile" method="POST">
-            <button class="l_button" type="submit">My Profile</button>
+            <button class="l_button" type="submit"><?= i18n("My Profile")?></button>
         </form>
     </div>
 </div>
@@ -45,12 +46,11 @@ if($view->hasFlash()) {
                 <i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i>
             </a>
         </div>
-        <div class="chat-tab" data-id="5">
-            <span class="text chat-tab-text">Chat 5</span>
+        <?php foreach($_SESSION["currentuserchats"] as $chat): ?>
+        <div class="chat-tab" id="chat-tab-<?= $chat["idChat"]?>    " data-id="<?= $chat["idChat"]?>">
+            <span class="text chat-tab-text"><?= $chat["product_name"]?></span>
         </div>
-        <div class="chat-tab" data-id="1">
-            <span class="text chat-tab-text">Chat 1</span>
-        </div>
+        <?php endforeach; ?>
     </div>
 </div>
 
@@ -64,9 +64,7 @@ if($view->hasFlash()) {
         </div>
     </div>
     <div class="chat-modal-input">
-        <form>
-            <input class="chat-input" type="text" name="chatInput" placeholder="Enter your message">
-        </form>
+        <input class="chat-input" type="text" placeholder="Enter your message">
     </div>
 </div>
 </body>

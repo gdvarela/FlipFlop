@@ -77,14 +77,16 @@ class UsersController extends BaseController {
     }
 
     public function profile() {
-        $this->view->setLayout("logged");
+        $user = $this->userMapper->getUser($_SESSION["currentuser"]);
+        $this->view->setVariable("user", $user);
+
         $this->view->render("users", "profile");
     }
-
 
     public function userProducts($id) {
         $this->userMapper->userproducts($id);
     }
+
 
 
 }

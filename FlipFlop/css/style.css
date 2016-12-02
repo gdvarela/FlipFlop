@@ -93,6 +93,10 @@ footer {
     display: table;
 }
 
+.new-messages {
+    background-color: #1dc01e;
+}
+
 .chat-tab:hover {
     cursor: pointer;
 }
@@ -101,6 +105,7 @@ footer {
 .chat-tab-text {
     display: table-cell;
     vertical-align: middle;
+    padding: 0 5px;
 }
 
 .close-icon {

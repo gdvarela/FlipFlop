@@ -31,7 +31,6 @@
     max-height: 330px;
     width: 25%;
     height: 50%;
-    overflow: auto;
     background-color: #2956bd;
     background-color: rgba(0,0,0,0.4);
     border-top-left-radius: 10px;
@@ -52,6 +51,7 @@
     margin: 1%;
     padding: 1%;
     background-color: #729992;
+    overflow: auto;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 5px;
@@ -61,7 +61,7 @@
 .chat-modal-msg-content {
     max-height: 90%;
     margin: 0.5% 0;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .chat-modal-input {
@@ -72,7 +72,7 @@
 
 .chat-input {
     height: 19px;
-    width: 100%;
+    width: 99%;
     text-align: center;
     border: medium none transparent;
     border-radius: 5px;
