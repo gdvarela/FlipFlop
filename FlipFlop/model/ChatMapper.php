@@ -59,4 +59,10 @@ class ChatMapper {
 
         return $chats;
     }
+
+    public function create($usr, $pid)
+    {
+        $stmt = $this->db->prepare("INSERT INTO Chats (idProduct, idInterested) values (?,?)");
+        $stmt->execute(array($pid, $usr));
+    }
 }

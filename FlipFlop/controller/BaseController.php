@@ -61,4 +61,9 @@ class BaseController
             $this->view->setLayout("logged");
         }
     }
+
+    public function createChat{
+        $chat = $this->chatMapper->create($usr, $pid);
+        $this->view->setVariable("chat", $chat);
+    }
 }

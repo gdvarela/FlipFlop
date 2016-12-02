@@ -3,23 +3,13 @@
 require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
 $product = $view->getVariable("product");
+$uri = $view->getVariable("uri");
 $errors = $view->getVariable("errors");
 $view->setVariable("title", "View Product");
+
 ?>
 <div class="content">
-    <a class="button light-border" href="../index.php">
-        <i class="fa fa-list fa-fw fa-3x" aria-hidden="true"></i>
-        <span class="text button-text2"><?= i18n("Back") ?></span>
-    </a>
-    <div class="img-list">
-        <div>
-            <img class="d-img light-border" src="../FlipFlop/resources/91.jpg">
-        </div>
-        <div class="sub-img-box">
-            <img class="sub-img light-border" src="../img/chancleta2.jpg">
-            <img class="sub-img light-border" src="../img/chancleta2.jpg">
-        </div>
-    </div>
+
     <div class="des-head light-border">
         <div class="p-row rowtext">
             <div class="p-title text"><?= i18n("Product").": ".htmlentities($product->getProductName() ) ?></div>
@@ -30,9 +20,14 @@ $view->setVariable("title", "View Product");
             <div class="p-row rowtext"><?= i18n("Tags").": ".htmlentities( $product->getTags() ) ?></div>
                 <div>
                     <div class="p-row2 rowtext"><?= i18n("Seller").": ".htmlentities( $product->getSeller() ) ?></div>
+                    <div class="p-row2 rowtext"><?= i18n("Contact").": ".htmlentities( $chat-> ) ?></div>
                     <div class="p-row2 rowtext"><?= i18n("Added").": ".htmlentities( $product->getAddDate() ) ?></div>
                 </div>
         </div>
-        <a href="?controller=products&action=edit&id=<?= $product->getId() ?>">Editar producto</a>
     </div>
+
+    <?php foreach($uri[0] as $u): if ($uri)?>
+        <img class="d-img light-border" src="../FlipFlop/resources/<?= $u ?>.jpg">
+    <?php endforeach; ?>
+
 </div>

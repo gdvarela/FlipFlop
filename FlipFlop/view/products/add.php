@@ -30,7 +30,7 @@ $view->setVariable("title", "Add Product");
             <?= isset($errors["tags"])?$errors["tags"]:"" ?><br>
 
             <?= i18n("Picture(s)") ?>: <br>
-            <input class="add-input" type="file" name="files" multiple="multiple" accept="image/*">
+            <input class="add-input" type="file" name="files[]" multiple="multiple" accept="image/*">
             <?= isset($errors["picture"])?$errors["picture"]:"" ?><br>
 
             <input class="add-button" type="submit" name="submit" value=<?= i18n("Create")?>>

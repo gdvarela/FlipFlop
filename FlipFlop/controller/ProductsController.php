@@ -23,6 +23,9 @@ class ProductsController extends BaseController {
         $this->userMapper = new UserMapper();
     }
 
+    /**
+     *
+     */
     public function add() {
 
 //        if (!isset($this->currentUser)) {
@@ -48,28 +51,20 @@ class ProductsController extends BaseController {
                     $this->productMapper->save($product);
                     $pid = $this->productMapper->pid($_POST["name"]);
 
-                    $cont = 1;
-//                    //Subimos las fotos
-//                    foreach($_FILES['files']['name'] as $f => $name) {
-//                        $foto = $_FILES['files']['tmp_name'];
-//                        $nombre = $_FILES['files']['name'];
-//                        $extension = pathinfo($nombre, PATHINFO_EXTENSION);
-//                        $newname = $pid . $cont . "." . $extension;
-//                        $destino = "resources/" . $newname;
-//                        move_uploaded_file($foto, $destino);
-//                        $this->productMapper->saveImg($pid . $cont, $pid);
-//                        $cont++;
-//                        if ($cont == 4) break;
-//                    }
-
-                    //Subimos las fotos
-                        $foto = $_FILES['files']['tmp_name'];
-                        $nombre = $_FILES['files']['name'];
-                        $extension = pathinfo($nombre, PATHINFO_EXTENSION);
-                        $newname = $pid . $cont . "." . $extension;
-                        $destino = "resources/" . $newname;
-                        move_uploaded_file($foto, $destino);
-                        $this->productMapper->saveImg($pid . $cont, $pid);
+                    if($_FILES["files"]["name"]=""){
+                        $cont = 0;
+                        //Subimos las fotos
+                        for($cont; $cont<=$_FILES['files']['name']; $cont++) {
+                            $foto = $_FILES['files']['tmp_name'][$cont];
+                            $nombre = $_FILES['files']['name'][$cont];
+                            $extension = pathinfo($nombre, PATHINFO_EXTENSION);
+                            $newname = $pid . $cont . "." . $extension;
+                            $destino = "resources/" . $newname;
+                            move_uploaded_file($foto, $destino);
+                            $this->productMapper->saveImg($pid . $cont, $pid);
+                            if ($cont == 2) break;
+                        }
+                    }
 
                     $this->view->setFlash("Product ".$product->getProductName()." successfully added. ");
                     $this->view->redirect("users", "profile");
@@ -103,6 +98,8 @@ class ProductsController extends BaseController {
 
         // find the Product object in the database
         $product = $this->productMapper->view($id);
+        $product->setSeller($this->productMapper->getSeller($id));
+        $uri[] = $this->productMapper->getUri($id);
 
         if ($product == NULL) {
             throw new Exception("no such product with id: ".$id);
@@ -110,6 +107,7 @@ class ProductsController extends BaseController {
 
         // put the Post object to the view
         $this->view->setVariable("product", $product);
+        $this->view->setVariable("uri", $uri);
 
         // render the view (/view/products/view.php)
         $this->view->render("products", "view");

@@ -79,4 +79,13 @@ class ProductMapper {
         return $stmt->fetchColumn(0);
     }
 
+    //returns uri to get images
+    public function getUri($id) {
+        $stmt = $this->db->prepare("SELECT uri FROM Images where idProduct=?");
+        $stmt->execute(array($id));
+        $uri = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+        return $uri;
+    }
+
 }

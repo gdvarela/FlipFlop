@@ -9,6 +9,7 @@
     "Tags" => "Etiquetas",
     "Added" => "Añadido",
     "Seller" => "Vendedor",
+    "Contact" => "Contactar",
     "Picture(s)" => "Foto(s)",
     "Modify product" => "Modificar producto",
     "Product \"%s\" successfully added." => "Producto \"%s\" añadido.",
