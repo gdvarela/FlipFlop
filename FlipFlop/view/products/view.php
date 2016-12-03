@@ -20,13 +20,15 @@ $view->setVariable("title", "View Product");
             <div class="p-row rowtext"><?= i18n("Tags").": ".htmlentities( $product->getTags() ) ?></div>
                 <div>
                     <div class="p-row2 rowtext"><?= i18n("Seller").": ".htmlentities( $product->getSeller() ) ?></div>
-                    <div class="p-row2 rowtext"><?= i18n("Contact").": ".htmlentities( $chat-> ) ?></div>
                     <div class="p-row2 rowtext"><?= i18n("Added").": ".htmlentities( $product->getAddDate() ) ?></div>
                 </div>
         </div>
+        <button class="add-button2 rowtext" type="button" action="?controller=base&amp;action=createChat($product->getId())">
+            <?= i18n("Contact seller") ?></button>
     </div>
 
-    <?php foreach($uri[0] as $u): if ($uri)?>
+
+    <?php foreach($uri[0] as $u): ?>
         <img class="d-img light-border" src="../FlipFlop/resources/<?= $u ?>.jpg">
     <?php endforeach; ?>
 

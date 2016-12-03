@@ -62,8 +62,7 @@ class BaseController
         }
     }
 
-    public function createChat{
-        $chat = $this->chatMapper->create($usr, $pid);
-        $this->view->setVariable("chat", $chat);
+    public function createChat($pid){
+        $chat = $this->chatMapper->create($_SESSION["currentuser"], $pid);
     }
 }

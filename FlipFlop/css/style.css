@@ -52,6 +52,15 @@ footer {
     overflow-y: hidden;
 }
 
+.texts {
+    font-family: comic-sans;
+    font-style: oblique;
+    text-align: center;
+    color: white;
+    word-wrap: break-word;
+    overflow-y: hidden;
+}
+
 .rowtext {
     font-family: comic-sans;
     text-align: left;
@@ -304,6 +313,13 @@ body{
     font-size: 19px;
 }
 
+.back-title {
+    padding: 3%;
+    margin: 3%;
+    height: 11%;
+    font-size: 19px;
+}
+
 .p-price {
     width: 18%;
     float: left;
@@ -330,6 +346,14 @@ body{
 }
 
 .p-row2 {
+    float: left;
+    padding: 1%;
+    font-size: 12px;
+    width: 25%;
+    margin: 1%;
+    height: 13%;
+}
+.p-row3 {
     float: left;
     padding: 1%;
     font-size: 12px;
@@ -404,6 +428,15 @@ body{
     border-radius: 1px;
     margin-top: 5px;
     width: 20%;
+}
+
+.add-button2 {
+    color: black;
+    border: 1px solid white;
+    background-color: #ff533d;
+    border-radius: 1px;
+    margin-top: 15px;
+    width: auto;
 }
 
 .add-input {

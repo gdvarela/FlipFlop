@@ -88,4 +88,20 @@ class ProductMapper {
         return $uri;
     }
 
+    public function search($s){
+
+        $stmt = $this->db->query("SELECT * FROM products WHERE product_name LIKE '$s%' ");
+        $last_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $products = array();
+
+        foreach ($last_products as $product) {
+            array_push($products, new Product($product["id"], $product["product_name"], $product["description"],
+                $product["price"], $product["tags"], $product["add_date"]));
+        }
+
+        return $products;
+
+    }
+
 }

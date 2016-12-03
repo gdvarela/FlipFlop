@@ -173,4 +173,23 @@ class ProductsController extends BaseController {
         $this->view->render("products", "edit");
     }
 
+    public function search()
+    {
+        $search = $_POST["searchbox"];
+
+        $results = $this->productMapper->search($search);
+
+
+
+        if ($results == NULL) {
+            $this->view->setFlash(sprintf(i18n("nores")));
+            $this->view->render("layouts", "default");
+
+        }else{
+
+            $this->view->setVariable("results", $results);
+            $this->view->render("products", "results");
+
+        }
+    }
 }
