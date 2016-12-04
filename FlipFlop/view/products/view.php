@@ -25,7 +25,7 @@ $view->setVariable("title", "View Product");
         </div>
         <form action="?controller=base&amp;action=createChat" method="POST" enctype="multipart/form-data">
             <input hidden value="<?= $product->getSeller() ?>" name="owner">
-            <button class="add-button2 rowtext" value="<?= $product->getId() ?>" name="pid"><?= i18n("Contact seller") ?></button>
+            <?php if(isset($_SESSION["currentusername"])){ echo "<button class='add-button2 rowtext' value=".$product->getId()." name='pid'>".i18n("Contact seller")."</button>";}?>
         </form>
     </div>
 
