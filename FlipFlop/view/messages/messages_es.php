@@ -11,6 +11,7 @@
     "Seller" => "Vendedor",
     "nores" => "Sin resultados",
     "Search" => "Introduce tu busqueda",
+    "Hello" => "Hola",
     "Contact seller" => "Contactar con el vendedor",
     "Picture(s)" => "Foto(s)",
     "Modify product" => "Modificar producto",

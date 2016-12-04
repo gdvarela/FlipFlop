@@ -56,6 +56,23 @@ class ProductMapper {
         return $products;
     }
 
+    public function listFromUser($seller) {
+
+        $stmt = $this->db->query("Select * from products where id=? group by id order by add_date desc");
+        $stmt->execute(array($seller));
+        $last_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $products = array();
+
+        foreach ($last_products as $product) {
+            array_push($products, new Product($product["id"], $product["product_name"], $product["description"],
+                $product["price"], $product["tags"], $product["add_date"], $product["uri"]));
+        }
+
+        return $products;
+    }
+
+
     public function exists($name) {
         $stmt = $this->db->prepare("SELECT * FROM Products where product_name=?");
         $stmt->execute(array($name));

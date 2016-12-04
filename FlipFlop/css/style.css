@@ -148,6 +148,11 @@ body{
     font-size: 50px;
 }
 
+
+.profile-line {
+    margin: 10px 0px 4px 0px;
+}
+
 .logo {
     position: relative;
     height: 100px;
@@ -215,6 +220,7 @@ body{
 .profile-form {
     display: inline;
 }
+
 
 .input {
     width: 90%;

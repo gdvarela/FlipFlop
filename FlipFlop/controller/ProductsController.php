@@ -207,4 +207,10 @@ class ProductsController extends BaseController {
 
     }
 
+    public function listFromUser($id){
+        $products = $this->productMapper->listFromUser();
+        $this->view->setVariable("products", $products);
+        $this->view->render("products", "products");
+    }
+
 }
