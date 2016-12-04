@@ -190,4 +190,21 @@ class ProductsController extends BaseController {
 
         }
     }
+
+    public function delete(){
+
+        if (!isset($_REQUEST["id"])) {
+            throw new Exception("A product id is mandatory");
+        }
+
+        if (!isset($this->currentUser)) {
+            throw new Exception("Not in session. Editing posts requires login");
+        }
+
+        // Get the Post object from the database
+        $id = $_REQUEST["id"];
+        $product = $this->productMapper->delete($id);
+
+    }
+
 }

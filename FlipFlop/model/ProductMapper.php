@@ -36,6 +36,11 @@ class ProductMapper {
         }
     }
 
+    public function delete(Product $product) {
+        $stmt = $this->db->prepare("DELETE from products WHERE id=?");
+        $stmt->execute(array($product->getId()));
+    }
+
     public function listLast() {
 
         $stmt = $this->db->query("Select * from products, images where products.id = Images.idProduct group by id order by add_date desc limit 8");
