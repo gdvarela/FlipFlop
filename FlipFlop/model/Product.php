@@ -12,7 +12,7 @@ class Product {
     private $tags;
     private $seller;
     private $add_date;
-
+    private $img;
 
     //constructor
 
@@ -27,7 +27,7 @@ class Product {
      * @param null $seller
      */
     public function __construct($id = NULL, $product_name = "", $description = NULL, $price = NULL, $tags = NULL,
-                                $add_date = NULL, $seller = NULL) {
+                                $add_date = NULL, $seller = NULL, $img = NULL) {
         $this->id = $id;
         $this->product_name = $product_name;
         $this->description = $description;
@@ -35,6 +35,7 @@ class Product {
         $this->tags = $tags;
         $this->seller = $seller;
         $this->add_date = $add_date;
+        $this->img = $img;
     }
 
     /**
@@ -146,6 +147,22 @@ class Product {
     public function setAddDate($add_date)
     {
         $this->add_date = $add_date;
+    }
+
+    /**
+     * @return null
+     */
+    public function getImg()
+    {
+        return $this->img;
+    }
+
+    /**
+     * @param null $img
+     */
+    public function setImg($img)
+    {
+        $this->img = $img;
     }
 
     public function checkIsValidForRegister()

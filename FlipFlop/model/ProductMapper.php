@@ -38,14 +38,14 @@ class ProductMapper {
 
     public function listLast() {
 
-        $stmt = $this->db->query("Select * from products order by add_date desc limit 8");
+        $stmt = $this->db->query("Select * from products, images where products.id = Images.idProduct group by id order by add_date desc limit 8");
         $last_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $products = array();
 
         foreach ($last_products as $product) {
             array_push($products, new Product($product["id"], $product["product_name"], $product["description"],
-                $product["price"], $product["tags"], $product["add_date"]));
+                $product["price"], $product["tags"], $product["add_date"], $product["uri"]));
         }
 
         return $products;
