@@ -15,7 +15,7 @@ $products = $view->getVariable("products");
         <?php foreach($products as $product): ?>
             <div class="product">
                 <a href="?controller=products&action=view&id=<?= $product->getId() ?>">
-                    <img class="p-img light-border" src="img/<?= $product->getImg() ?>"> </a>
+                    <img class="p-img light-border" src="resources/<?= $product->getImg() ?>.jpg"> </a>
                 <div class="p-title text"><?= $product->getProductName() ?></div>
                 <div class="p-price text light-border"><?= $product->getPrice() ?>&euro;</div>
                 <div class="p-text text">

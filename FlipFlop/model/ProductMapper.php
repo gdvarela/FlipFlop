@@ -50,7 +50,7 @@ class ProductMapper {
 
         foreach ($last_products as $product) {
             array_push($products, new Product($product["id"], $product["product_name"], $product["description"],
-                $product["price"], $product["tags"], $product["add_date"], $product["uri"]));
+                $product["price"], $product["tags"], $product["add_date"], $product["seller"], $product["uri"]));
         }
 
         return $products;

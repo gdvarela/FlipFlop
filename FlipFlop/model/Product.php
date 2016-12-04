@@ -25,6 +25,7 @@ class Product {
      * @param null $tags
      * @param null $add_date
      * @param null $seller
+     * @param null $img
      */
     public function __construct($id = NULL, $product_name = "", $description = NULL, $price = NULL, $tags = NULL,
                                 $add_date = NULL, $seller = NULL, $img = NULL) {
