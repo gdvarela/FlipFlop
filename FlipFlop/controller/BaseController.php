@@ -65,9 +65,15 @@ class BaseController
     public function createChat(){
         $id = $_POST["pid"];
         $u = $_SESSION["currentuser"];
+        $o = $this->chatMapper->getOnwer($id);
 
-        if($this->chatMapper->exists($id,$u) == 0) {
-            $this->chatMapper->create($id, $u);
+        //var_dump($u,$o);
+        //die();
+
+        if($u != $o){
+            if( $this->chatMapper->exists($id,$u) == 0){
+                $this->chatMapper->create($id, $u);
+            }
         }
 
         header("Location: " . $_SERVER["HTTP_REFERER"]);

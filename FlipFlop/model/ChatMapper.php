@@ -74,4 +74,12 @@ class ChatMapper {
 
         return $res;
     }
+
+    public function getOnwer($pid){
+        $stmt = $this->db->prepare("SELECT SELLER FROM Products WHERE id=?");
+        $stmt->execute(array($pid));
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $res[0]["SELLER"];
+    }
 }

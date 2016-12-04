@@ -103,7 +103,7 @@ footer {
 }
 
 .new-messages {
-    background-color: #1dc01e;
+    background-color: #2956bd;
 }
 
 .chat-tab:hover {
@@ -365,7 +365,7 @@ body{
 .login {
     position: relative;
     height: 100px;
-    background-color: #46ff4a;
+    background-color: #2956bd;
     float: left;
     flex-flow: row wrap;
 }
