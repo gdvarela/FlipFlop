@@ -60,9 +60,18 @@ class ChatMapper {
         return $chats;
     }
 
-    public function create($usr, $pid)
+    public function create($pid, $usr)
     {
         $stmt = $this->db->prepare("INSERT INTO Chats (idProduct, idInterested) values (?,?)");
         $stmt->execute(array($pid, $usr));
+    }
+
+    public function exists($pid, $usr)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM Chats WHERE idProduct=? AND idInterested=?");
+        $stmt->execute(array($pid, $usr));
+        $res = $stmt->rowCount();
+
+        return $res;
     }
 }

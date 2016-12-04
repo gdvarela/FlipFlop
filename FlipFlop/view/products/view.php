@@ -23,10 +23,11 @@ $view->setVariable("title", "View Product");
                     <div class="p-row2 rowtext"><?= i18n("Added").": ".htmlentities( $product->getAddDate() ) ?></div>
                 </div>
         </div>
-        <button class="add-button2 rowtext" type="button" action="?controller=base&amp;action=createChat($product->getId())">
-            <?= i18n("Contact seller") ?></button>
+        <form action="?controller=base&amp;action=createChat" method="POST" enctype="multipart/form-data">
+            <input hidden value="<?= $product->getSeller() ?>" name="owner">
+            <button class="add-button2 rowtext" value="<?= $product->getId() ?>" name="pid"><?= i18n("Contact seller") ?></button>
+        </form>
     </div>
-
 
     <?php foreach($uri[0] as $u): ?>
         <img class="d-img light-border" src="../FlipFlop/resources/<?= $u ?>.jpg">

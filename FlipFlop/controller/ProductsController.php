@@ -179,8 +179,6 @@ class ProductsController extends BaseController {
 
         $results = $this->productMapper->search($search);
 
-
-
         if ($results == NULL) {
             $this->view->setFlash(sprintf(i18n("nores")));
             $this->view->render("layouts", "default");
