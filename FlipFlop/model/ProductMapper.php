@@ -36,9 +36,10 @@ class ProductMapper {
         }
     }
 
-    public function delete(Product $product) {
-        $stmt = $this->db->prepare("DELETE from products WHERE id=?");
-        $stmt->execute(array($product->getId()));
+    public function delete($id) {
+        $stmt = $this->db->prepare("DELETE * from products WHERE id = ?");
+        $stmt->execute(array($id));
+        return true;
     }
 
     public function listLast() {

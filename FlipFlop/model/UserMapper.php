@@ -117,5 +117,17 @@ class UserMapper
         return $products;
     }
 
+    public function mvUsers(){
+
+        $stmt = $this->db->query("SELECT distinct u.NAME FROM Users u, Products p where u.id = p.seller 
+                                  AND p.add_date >= (SELECT DATE_ADD(NOW(), INTERVAL -30 DAY))");
+        $best_sellers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $sellers = array();
+
+        return $sellers;
+
+    }
+
 
 }

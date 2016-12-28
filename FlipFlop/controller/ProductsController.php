@@ -54,7 +54,7 @@ class ProductsController extends BaseController {
                     if($_FILES["files"]["name"]=""){
                         $cont = 0;
                         //Subimos las fotos
-                        for($cont; $cont<=$_FILES['files']['name']; $cont++) {
+                        for($cont; $cont <= count($_FILES['files']['name']); $cont++) {
                             $foto = $_FILES['files']['tmp_name'][$cont];
                             $nombre = $_FILES['files']['name'][$cont];
                             $extension = pathinfo($nombre, PATHINFO_EXTENSION);
@@ -202,15 +202,14 @@ class ProductsController extends BaseController {
         }
 
         // Get the Post object from the database
-        $id = $_REQUEST["id"];
-        $product = $this->productMapper->delete($id);
+        $id = 2;
+        $this->productMapper->delete($id);
 
     }
 
-    public function listFromUser($id){
-        $products = $this->productMapper->listFromUser();
-        $this->view->setVariable("products", $products);
-        $this->view->render("products", "products");
-    }
+//    public function listFromUser($id){
+//        $products = $this->productMapper->listFromUser();
+//        $this->view->setVariable("products", $products);
+//    }
 
 }

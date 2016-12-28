@@ -88,6 +88,14 @@ class UsersController extends BaseController {
         $this->userMapper->userproducts($id);
     }
 
+    public function mvUsers(){
+        $bsellers = $this->userMapper->mvUsers();
+        $this->view->setVariable("busers", $bsellers);
+        $this->view->setLayout("logged");
+
+        $this->view->render("users", "profile");
+    }
+
 
 
 }

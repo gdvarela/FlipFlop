@@ -6,6 +6,7 @@ $errors = $view->getVariable("errors");
 $user = $view->getVariable("user");
 $view->setVariable("title", "Profile");
 $products = $view->getVariable("products");
+$busers = $view->getVariable("busers");
 
 
 ?>
@@ -15,6 +16,7 @@ $products = $view->getVariable("products");
     <div class="des-head">
         <div><?= i18n("Hello") ." ". $user->getLogin()?></div>
         <a href="?controller=products&action=add">Añadir producto</a><br>
+        <div><?= "". $busers[0] ."" ?></div>
     </div>
 <!---->
 <!--    <div>Mis productos</div>-->
