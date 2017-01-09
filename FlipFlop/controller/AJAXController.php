@@ -21,15 +21,19 @@ class AJAXController extends BaseController
     public function messages()
     {
         $chat = array();
-        array_push($chat, $this->chatMapper->getChatInfo($_POST['idChat']));
-        array_push($chat, $this->chatMapper->getMessages($_POST['idChat'], $_POST['last']));
+        if ($this->chatMapper->checkChatOwner($_POST['idChat'], $_SESSION['currentuser'])) {
+            array_push($chat, $this->chatMapper->getChatInfo($_POST['idChat']));
+            array_push($chat, $this->chatMapper->getMessages($_POST['idChat'], $_POST['last']));
+        }
 
         echo json_encode($chat);
     }
 
     public function send()
     {
-        $msg = new Message($_POST["idChat"], null, $_POST["msg"], $_SESSION["currentuser"], $_POST["time"]);
-        $this->chatMapper->saveMsg($msg);
+        if ($this->chatMapper->checkChatOwner($_POST['idChat'], $_SESSION['currentuser'])) {
+            $msg = new Message($_POST["idChat"], null, $_POST["msg"], $_SESSION["currentuser"], $_POST["time"]);
+            $this->chatMapper->saveMsg($msg);
+        }
     }
 }

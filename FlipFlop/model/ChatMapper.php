@@ -82,4 +82,18 @@ class ChatMapper {
 
         return $res[0]["SELLER"];
     }
+
+    public function checkChatOwner($chatId, $userId) {
+        $stmt = $this->db->prepare("Select idChat from Chats, Products where Chats.idProduct = Products.id and (seller = ? or idInterested = ?);");
+        $stmt->execute(array($userId, $userId));
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($res as $row) {
+            if ($row["idChat"] == (int) $chatId) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

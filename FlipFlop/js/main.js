@@ -33,7 +33,6 @@ loadChat = function () {
                         chatsIntervals[chatID]["messages"] = chat;
                     }
                     notFocusInterval(chatID);
-                    console.log("First");
                 }
             }
         );
