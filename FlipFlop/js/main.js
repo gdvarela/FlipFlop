@@ -82,7 +82,6 @@ loadChat = function () {
                                 chatsIntervals[chatID]["messages"].push(message);
                             });
                         }
-                        console.log("NotFocus", chatID);
                     }
                 }
             );
@@ -106,7 +105,6 @@ loadChat = function () {
                                 loadLastMessages(message);
                             });
                         }
-                        console.log("Focus", chatID);
                     }
                 }
             );
